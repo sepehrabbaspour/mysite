@@ -120,3 +120,63 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#in file tanzimat proje mano negah dari mikone , har tanzimi ke baraye sakhtar koli proje dar nazar begirim bayad biaim inja.
+#amma havi chie in file ? in file ye seri addres haro baramoon negah midare dar daraje aval , addres pooshe proje mano 
+#negah midare , base dir dar (line 16) vaghe ye varable hast ke tooye bishtar jahaye proje dare estefade mishe. chera ? 
+#age bana bashe pooshe proje ro har bar dasti bakhaym set konim tooye addres khob kheili kar sakhtie 
+#asz in jahat ye base dir (base directory) barash dar nazar gerefte shode ke masala c:\...\...\ ta oonjayi ke be file berese.
+
+#secret key (line 23) : dar vaghe kelidi hast ke etelaat bahash ramz mishe tooye amalkard jango. jelo tar miresim behesh 
+
+#debug (line 26) : vazeiyati ke proje man dare roosh ejra mishe , vaghti debug proje faal bashe manzoor ine ke oon proje ie ke
+#oon proje ie ke darim run mikonim ghabeliat tosee dare , masala ye seri payam haye matni miyad ke irad code hat kojast 
+#ya masala chizi ro faramoosh kardam behem bege, mesl vaghti ke ye exception raise mishe montaha tooye safhe ina ro mibinim 
+#debug false beshe dige in payam nemiad. ye seri etelaat bayad dasti barash set beshe ,.... ke behesh miresim.
+
+#alowed hosts (line 28) : dar vaghe mal zamani hast ke ye seri damane haro darim va zamani ke be samt deployment mirim 
+#va mikhaym code haro rooye serveri jayi gharar bedim , niaz be ye damane hast ke in damane ro be server ya host ie ke 
+#kharidim motasel konim va ejaze dastresi az tarigh in damane ro barash ijad konim. behesh miresim....
+
+#installed apps (line 33) : marboot be barname ha ya mudole hayi hast ke amala tey masir be proje jango moon ezafe mikonim
+#ye seri haro nasb mikonim va estefade mikonim ye seri hasho khodemoon misazim va estefade mikonim.
+#dar har soorat ta zamani ke in app ha vaseye proje man tarif nashe ejaze dastresi beheshoon nadaram.
+
+#middleware (line 42) : zamani etefagh miofte ke ma ye seri darkhast be samt server dare miad.
+#in darkhast ha ghabl az inke vared bakhsh pardazesh url va kheili chizaye dige beshe ghablesh az middleware rad mishe.
+#ye mard miani hast amala ke baraye ma tasmim giri mikone in be kodoom bakhsh ha bayad bere 
+
+#root urlconf (line 52) : mige ke url haye asli az kodoom file dare sar cheshme migire ke inja dare mige khodesh ke :
+#'mysite.url' ke mige tooye pooshe myste , tooye file urls.py , (tooye jango injoori addres bazi jaha midim ke kar mikonim bishtar)
+#amalkard in model addres dadan taghriba mesl kari hast ke ba majule ha anjam midadim vali inja yekami sakhtar avaz shode
+
+#template (line54) : safahat html , css , js ya har chizi ke neveshtim ro mikhaym dakhel oon safhe nemayesh bedim ro baramoon
+#control mikone vali dar vaghe faghat safaht ro control mikone , static haro nemitoone control bokone.
+#vali khob chon ye seri amalkard haro daroon in safahat gharar midim va ye seri chizaro import mikonim toosh va estefade mikonim , 
+#be hamrah oonam mishe ye seri dastresi ha az tarigh eleman ie ke inja darim control kard masala : 
+#yeki az chizayi ke kheyli bahash dargir mishim bahs directory tamplate (DIRS) hayi hastesh ke rajeb shoon sohbat mikonim.
+
+#wgsi_application (line 69) : dar vaghe  mige ke in pol ertebati man ba serveri ke gharare bahashe , file wgsi man tooye 
+#class application hastesh ke mikhad amalkardesh ro dast begire. in momkene baazi ha mostaghima taghiresh bedan 
+#manzoor az application :  WSGI_APPLICATION = 'mysite.wsgi.application' hast.
+
+#database (line 75) : goftim ke data base ie ke jango azash estefade mikone sqlite 3 hastesh . ba sqlite 3 bayad kar karde bashim.
+
+#auth_password_validators (line 86): in baraqye zamani hast ke taraf masala mikhad password hayi ro baraye contex sh set bokone ke ,
+#oonja vared amal mishe va masala mige password ke entekhab mikoni nabayad tedad password az ye tedadi kamtar bashe (line 91)
+#ya masala nabayad ye password , common (sade va ghabel hads mesl 12345678) bashe (line 94)
+
+#language_code (line 105) : bahs sakhtar asli khode django hastesh ke ba che zabooni dare run mishe
+
+#time_zone (line 107) : moshakhas mikone ke baze zamanish dare az koja miad . 
+
+# USE_I18N = True , USE_TZ = True (line 109 , 111) : rajeb shoon bishtar sohbat mishe vali bishtar marboot be hoze taghir zaban , 
+#tran mishe ke agar bana bashe tooye site eleman haye multi language dashte bashim ke masala 2 zabane ya chand zabane amal konand , 
+#az in bakhsh ha ziad estefade mishe vali khob asa azash estefade nemikonim vali bedoon be che dardi mikhore.
+
+#static_url (line 117) : dar vaghe file haye css , js va chiz hayi ke gharare tooye safhat load beshan ro az inja miarim.
+#rajeb media ha ham sohbat mishe 
+
+#default_auto_field (line 122) : kari khasi nadarim bahash fela va in ke ye seri tanzimat marboot be bakhsh modelasion hast ke 
+#dare handel mikone ke rajeb shoon sohbat mishe be moroor 

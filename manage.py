@@ -20,3 +20,16 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+#in file modiriat amalkard ha va dastoorati hastesh ke ma bahashoon kar mikonim , in dastoorat serfa ba proje django
+#ertebat bargharar mikonim.
+
+#masala dastoorati mesl runserver , start project , ... tavasot in file modiriat mishan.
+
+#age dastoorat ro yademoon raft vared mashim majazi moon mishim tooye terminal va migim pythom manage.py , bedoon hich dastoor dige.
+#list dastoorat ro baramoon list mikone.
+
+#hala ghesmat haye mokhtalef dare ke ba rang ghermez moshakhas shode har kodoom mal che bakhshi hast.
+
+#masala ba runserver , ye mini server run kardim va ba startproject ye proje run kardim

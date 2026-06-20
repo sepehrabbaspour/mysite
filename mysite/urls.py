@@ -20,3 +20,9 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+#in file dar haghighat shemaye url amalkard haye mano negah dari mikone ke bar farz mesal ye addresi ke man baraye site am daram , 
+#oon addres ha inja bayad tarif beshe 
+
+#masala ye addres masala aparat.com/shorts ya hala har chizi , in addres ha inja tarif shodan.
+#hala ya zir shakhe ha az jaye dige dare tamin mishe ya khode addres mostaghima inja tarif shode.
