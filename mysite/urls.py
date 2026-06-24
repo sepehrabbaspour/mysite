@@ -15,8 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from mysite.views import http_test , json_test #marhale aval vasl kardan path be view
+from django.urls import path , include
+#marhale aval vasl kardan path be view
 #esm pooshe asli hatma zekr beshe inja / dar vaghe tooye directory feli ke code man dare ejra mishe , 
 #yani dar kenar urls.py donbal views begard , dar gheyr in soorat hatma bayad esm pooshe ro zekr konim.
 #chon dare az root asli be proje nagah mikone
@@ -25,8 +25,8 @@ from mysite.views import http_test , json_test #marhale aval vasl kardan path be
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("http-test" , http_test),
-    path("json-test" , json_test) #tarif url baraye json
+    path("website/" , include("website.urls"))
+
 
     #http-test hamoon addresi hast ke tooye url bala browser mibinim. 
     #har chizi mitoone bashe. in serfa test hast va rajeb baghie url ha sohbat mishe
@@ -42,6 +42,29 @@ urlpatterns = [
     #hala bayad ye tabe dige ro farakhooni konim ta in kar baramoon anjam beshe
     #baghie too file views.py 
     #yadet nare age chand ta url dashtim hatma ba (,) az ham dige jodashoon konim
+
+    #deghat kon age tooye ghesmat wievs app moon (website) , function haro neveshtim
+    #vaghti mikhaym import konim function haro inja , bayad esm app moon ro begim
+
+    #hala barye inke ghesmat url khalvat tar beshe bayad ye pooshe urls.py 
+    # tooye app moon (website) besazim , va url haro be oonja montaghel konim.
+    #file urls tooye app vojood nadare pas khodemoon misazim.
+    
+    #deghat kon ke be joz ghesmat admin va package hash ke import shode ;
+    #baghie ro be hamrah package hayi ke import kardim 
+    #deghat kon ke import path ham bayad copy beshe.
+
+    #hala bayad in url hayi ke copy shodan tooye file urls.py app ma 
+    #bayad be in soorat beheshoon dastresi peida konim : 
+    #ebteda include ro dar django.urls jeloye path import mikonim.
+    #dar edame, dar object path aval esm app va baad yedoone / jelosh tooye " "
+    #hala baraye parametr dovom include ro minevisim va tooye parantez jelosh aval esm app , 
+    #sepas (.) mizanim va esm file urls ro minevisim tooye " "
+    #yani nahayata be in soorat mishe : path("website/" , include("website.urls"))
+    #hala vaghti mikhaym khorooji begirim tooye moror gar bayad be in soorat benevisim
+    #baad az run kardan server migim 127.0.0.1:8000/website/http-test 
+    #ya masala 127.0.0.1:8000/website/json-test ta bian bala safahatmoon.
+
 
 ]
 

@@ -37,7 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'website.apps.WebsiteConfig'
 ]
+
+#deghat kon tooye ezafe kardan app mesl line 40 , bayad esm app , pooshe app va dar nahat esmsh
+#ke alan WebsiteComfig hast ke ye class hastg tooye file apps pooshe website(app moon)
+
+#mishe ham faghat esm khode app ro nevesht yani injoori kw faghat benevisim website
+#baste be kari ke mikhaym bokonim motafavete (har 2 estandard hast)
+#tozih midim har 2 ro , entekhabesh bastegi be khodmoon dare vali karbord ha fargh dare.
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,6 +150,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #installed apps (line 33) : marboot be barname ha ya mudole hayi hast ke amala tey masir be proje jango moon ezafe mikonim
 #ye seri haro nasb mikonim va estefade mikonim ye seri hasho khodemoon misazim va estefade mikonim.
 #dar har soorat ta zamani ke in app ha vaseye proje man tarif nashe ejaze dastresi beheshoon nadaram.
+#deghat kon age appi tarif kardim hatma bayad tooye bakhsh installed apps tarif beshe
 
 #middleware (line 42) : zamani etefagh miofte ke ma ye seri darkhast be samt server dare miad.
 #in darkhast ha ghabl az inke vared bakhsh pardazesh url va kheili chizaye dige beshe ghablesh az middleware rad mishe.
