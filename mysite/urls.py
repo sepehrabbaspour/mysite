@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mysite.views import http_test #marhale aval vasl kardan path be view
+from mysite.views import http_test , json_test #marhale aval vasl kardan path be view
 #esm pooshe asli hatma zekr beshe inja / dar vaghe tooye directory feli ke code man dare ejra mishe , 
 #yani dar kenar urls.py donbal views begard , dar gheyr in soorat hatma bayad esm pooshe ro zekr konim.
 #chon dare az root asli be proje nagah mikone
@@ -25,7 +25,10 @@ from mysite.views import http_test #marhale aval vasl kardan path be view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("http-test" , http_test) #http-test hamoon addresi hast ke tooye url bala browser mibinim. 
+    path("http-test" , http_test),
+    path("json-test" , json_test) #tarif url baraye json
+
+    #http-test hamoon addresi hast ke tooye url bala browser mibinim. 
     #har chizi mitoone bashe. in serfa test hast va rajeb baghie url ha sohbat mishe
     #alan in addres bayad be ye view motasel beshe yani injoori : path(url addres , view)
     #be gheyr az view eleman haye dige ham mishe be path ezafe kard masala : path(url addres , view , name)
@@ -38,6 +41,7 @@ urlpatterns = [
     #hata age http-test ro check bokonim behemoon mige ke string object moon nemitoone get beshe
     #hala bayad ye tabe dige ro farakhooni konim ta in kar baramoon anjam beshe
     #baghie too file views.py 
+    #yadet nare age chand ta url dashtim hatma ba (,) az ham dige jodashoon konim
 
 ]
 
