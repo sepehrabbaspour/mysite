@@ -10,8 +10,14 @@ from django.http import HttpResponse , JsonResponse
 #yadet nare package hasho import koni.
 #hala mitoonim oon file views ghabli ke tooye proje mysite sakhte boodim ro pakesh konim.
 
-def http_test(request):
-    return HttpResponse("this is first django project")
+def index_view(request):
+    return HttpResponse("<h1>welcome to home page</h1>")
+
+def contact_view(request):
+    return HttpResponse("<h1>welcome to contact page</h1>")
+
+def about_view(request):
+    return HttpResponse("<h1>welcome to about page</h1>")
 
 def json_test(request):
-    return JsonResponse({"name" : "sepehr"})
+    return JsonResponse({"name" : "samim"})
