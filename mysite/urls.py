@@ -26,6 +26,7 @@ from django.urls import path , include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("" , include("website.urls"))
+    #path("blog/" , include(blog.urls))
 
 
     #http-test hamoon addresi hast ke tooye url bala browser mibinim. 

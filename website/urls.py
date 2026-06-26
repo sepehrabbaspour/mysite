@@ -25,7 +25,8 @@ urlpatterns = [
     path("" , index_view),
     path("about" , about_view),
     path("contact" , contact_view),
-    path("json-test" , json_test)
+    path("json-test" , json_test),
+    path("http-test" , http_test)
 
 ]
 #agar mesl path avali chizi tooye "" ke parametr aval hast nanevisim , vaghti migim 
