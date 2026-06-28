@@ -11,7 +11,7 @@ from django.http import HttpResponse , JsonResponse
 #hala mitoonim oon file views ghabli ke tooye proje mysite sakhte boodim ro pakesh konim.
 
 def index_view(request):
-    return render(request , "index.html")
+    return render(request , "website-pages/index.html")
 
 def contact_view(request):
     return render(request , "website-pages/contact.html")
