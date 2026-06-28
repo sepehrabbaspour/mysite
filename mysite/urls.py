@@ -28,7 +28,6 @@ urlpatterns = [
     path("" , include("website.urls"))
     #path("blog/" , include(blog.urls))
 
-
     #http-test hamoon addresi hast ke tooye url bala browser mibinim. 
     #har chizi mitoone bashe. in serfa test hast va rajeb baghie url ha sohbat mishe
     #alan in addres bayad be ye view motasel beshe yani injoori : path(url addres , view)
