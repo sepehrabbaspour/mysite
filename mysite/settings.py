@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website.apps.WebsiteConfig'
+    'website.apps.WebsiteConfig' #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
+    #dar edame eshare konim be pooshe apps ke tooye tamam application ha vojood dare.
+    #dar nahayat ye class tooye app neveshte shode ba nam WebsiteConfig ke dar edame app varedesh mikonim
+    #in sakhtar baraye hame app ha be yhe soorat hast vali esm app ha fargh mikone.
 ]
 
 #deghat kon tooye ezafe kardan app mesl line 40 , bayad esm app , pooshe app va dar nahat esmsh
@@ -122,7 +125,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'static/' #in baraye pooshe static tarif shode az ghabl
+STATIC_ROOT = BASE_DIR / "static/" #deghat kon zamani ke mikhay ye static besazi va file haye css ro oonja gharar bedi
+#bayad ye static root besazi va base_dir ro be hamin soorat bala ba static tarkib konim ta css hayi ke neveshtim
+#va link kardim be file html emal beshan
+#link sade tarin halat motesal kardan file css be html hast ke dar file about.html mojood hast
+#dar soorati ke inja STATIC_ROOT tarif nashode bashe nemitoonim be hich file dasteresi dashte bashim
+#nokte badi in ke pooshe static bayad tooye app ma sakhte beshe va esmesham bayad hamoon static bashe
+
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / "media/"
+
+#hala ye media_url va media_root ham tarif mikonim baraye media ha 
+#be hamin sadegi :)
+
+STATICFILES_DIRS = [
+    BASE_DIR / "statics", #inja mishe esm directory moshakhas kard
+]
+
+#baad az in kar mesl template ha ye pooshe tooye directory asli (mysite) proje dorost mikonam 
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

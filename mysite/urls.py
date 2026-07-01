@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
+from django.conf import settings
+from django.conf.urls.static import static
+
 #marhale aval vasl kardan path be view
 #esm pooshe asli hatma zekr beshe inja / dar vaghe tooye directory feli ke code man dare ejra mishe , 
 #yani dar kenar urls.py donbal views begard , dar gheyr in soorat hatma bayad esm pooshe ro zekr konim.
@@ -26,7 +29,9 @@ from django.urls import path , include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("" , include("website.urls"))
-    #path("blog/" , include(blog.urls))
+    #path("blog/" , include(blog.urls)) #in masala baraye ye safhe dige hast ke marboot be chizaei ke ma load mikonim 
+    #tooye server asli django nadare va joda hast
+
 
     #http-test hamoon addresi hast ke tooye url bala browser mibinim. 
     #har chizi mitoone bashe. in serfa test hast va rajeb baghie url ha sohbat mishe
@@ -67,6 +72,47 @@ urlpatterns = [
 
 
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #static root
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media root
+ 
+
+#inja ba in ravesh url pattern asli proje moon static url haro ezafe mikonim
+#deghat kon ke bayad kharej az bracet url pattern bashe neveshtan in mozoo.
+
+#in dar vaghe mige boro be static hayi ke ma darim ye bakhsh dige ezafe kon ke dar bar girande file haye
+#static man hastesh.
+
+#albate bayad majule haye marboote ro ham bala import konim ke be soorat zire:
+# from django.conf import settings --> file settings.py ro miare baram ke static files va static root ro
+#azash dar biarim
+
+# from django.conf.urls.static import static --> ye doone ham khode shakhes amalkard kar ba static haro 
+# baramoon miare
+
+#deghat kon ke ham static root va ham media root dar file settings.py tarif shodand
+
+#ham media ro be url pattern ezafe mikonim va ham static haro
+
+#alan age local host ro search bokonim va ye addres bikhodi bedim toosh mibinim ke dastresi be file haye media ham 
+#baram ijad shode , alave bar oon be file haye static ham dastresi darim.
+
+#ina addres dehi haye asli bood ke bayad behesh ezafe mikardim baraye static va media
+#ama ye chizi : ma bayad directory static hamoon ro ye jaye general (koli) barash dar nazar begirim ke tamoom
+#static hamoon ro betoonim az oonja farakhooni konim.
+
+#amma baraye in kafie ye directory baraye static ijad konam ke in karo baram anjam bede ke be in soorat hast ke bayad 
+#tooye file setting neveshte beshe zir staticurl va media_url
+
+#deghat kon ke in static_url va media_url bayad tooye file url asli proje set beshan 
+
+#mantegh in kar be  in soorat hast ke mige man gharare static hayi dashte basham ke url sh tooye file 
+#settings man tarif shode 
+
+#hala dar in soorat miotoonim ba estefade az addres hayi ke joda baraye man ijad mishe be file haye static ham 
+#dastresi dashte basham.
+#chon vaghti ye url bedim ke vojood nadare ye addres static behemoon namayesh mide.
+
 
 #in file dar haghighat shemaye url amalkard haye mano negah dari mikone ke bar farz mesal ye addresi ke man baraye site am daram , 
 #oon addres ha inja bayad tarif beshe 
