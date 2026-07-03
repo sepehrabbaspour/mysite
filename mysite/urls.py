@@ -19,6 +19,7 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 #marhale aval vasl kardan path be view
 #esm pooshe asli hatma zekr beshe inja / dar vaghe tooye directory feli ke code man dare ejra mishe , 
 #yani dar kenar urls.py donbal views begard , dar gheyr in soorat hatma bayad esm pooshe ro zekr konim.
@@ -73,7 +74,7 @@ urlpatterns = [
 
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) #static root
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)#static root
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #media root
  
 

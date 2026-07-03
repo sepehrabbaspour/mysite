@@ -1,12 +1,68 @@
+{% load static %}
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Page</title>
-    <link rel="stylesheet" , href="static/test.css" />
+    <link rel="stylesheet" , href="{% static "css/colors.css" %}" /> 
   </head>
   <body>
     <h1>this is the About page</h1>
   </body>
 </html>
+
+{% comment %}
+baraye inke betoonim static file haye tooye template ro estefade konam bayad bayad az ye seri tag estefade beshe
+template tag chie ? django template ye disighn ie dare ke hadafesh bein rahat kardan va ghodrat bakhshidan 
+be kasani ke mikhan ba template kar konand. dar vaghe az ye engine estefade mishe be nam jinja ke be ma ejaze mide ke
+bekhan ye seri script pythoni benevisand ke tooye safahat web anjam beshe. yani amalkard haro pas bede va too oonja
+anjam beshe 
+
+amma jinja chie va amalkardesh chie ? ye engine template ie hastesh ke sari (fast) hast va mishe eleman haye dige ro 
+ham behesh ezafe ya kam kard va gostardegi bishtari bahash ijad kard
+va amala ye seri jaygah hayi ro baramoon negah dari mikone ke bekhad ye seri prose ro tooye ye noghte khasi anjam bede
+ke momkene refrens ma be samt ye code pythoni bashe ya be samt ye code html ie bashe 
+
+amma chertor mishe directory rasmi mo vase inke az ye static file ie ke daram , estefade konam behesh bedam? 
+ghabla ma in kar ro ba tag link anjam dadim va in kar be soorqat kamela dasti bood.
+khob alan chand ta directory darim momkene esm directory avaz beshe ya har chizi. inja mitoonim az oon static estefade
+konim va amalkardam ro rahat tar konam 
+
+#amma baraye in kar tooye daraje aval static file ha (hamoon root ha va directory hayi ke taein karde boodiam)
+bayad be soorat {%  load static  %} load konim.
+in kar tamam oon directory ha va root hayi ke taein karde boodim ro load mikone, addres shoon ro negah midare
+baad behesh migim  
+eyn import kardan majule ino oon balaye file html minevisim. engar ke darim ye file ie be esm static ro import mikonim
+jelotar khodemoon misazim
+
+deghat kon in ravesh addres dehi ye ravesh addres dehi dasti hast ke biaim link tarif konim
+#ma mikhaym ba estefade az jinja biaim va file haye static ke ghabla tarif shode ro load konim va az oona 
+estefade konim
+
+syntax jinja be in soorate ke oon bakhsh hayi ke gharare be soorat amalkard ya functioni bashand daroon beraceti ie
+ke daroonesh darsad hast yani be in soorat {% function ha dar inja neveshte mishavand %}
+masala age mikhay ye file static ro behesh moarefi koni bayad injoori begim ke {% static "test.css" %} 
+yani migim boro az tooye static file test.css ro peyda kon. dige lazem nist ghablesh begim addres static kojast
+khodesh midoone. be hamin sadegi :)
+ino be jaye bakhsh href tag link mizarim 
+age load static bala ro bardarim ba khata movajeh mishim. mige to dari rajeb static ha harf mizani amma loadesh nakardi
+mesl majule ha daghigha.
+in ravesh sahih load kardan static file ha tooye safhe hast 
+hala hata age tooye file statics ye pooshe dige be nam css dashte bashim ke file test.css moon oonja bashe , 
+bayad tooye href ke be static addres dadim addres oon pooshe css ro ham bedim yani be in soorat ke :
+
+href="{% static "css/test.css" %}"
+
+deghat kon dar har 2 soorat (che ye file dige dashte bashim va che nadashte bashim) niazi nist esm pooshe 
+statics ro biarim.
+
+attribute hash daroon baracet khali { attribute ha dar inja neveshte mishavand } ke behesh miresim
+
+darvaghe tag link ke inja neveshtim ye addres dasti va manual hast va mikhaym ino dynamic konim.
+
+chera ? chon momkene hala esm pooshe avaz beshe ya har chiz dige ie 
+mikhaym in addres ro dynamic konim
+
+{% endcomment %}
