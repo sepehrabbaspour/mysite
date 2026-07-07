@@ -11,19 +11,22 @@ from django.http import HttpResponse , JsonResponse
 #hala mitoonim oon file views ghabli ke tooye proje mysite sakhte boodim ro pakesh konim.
 
 def index_view(request):
-    return render(request , "website-pages/index.html")
+    return render(request , "website/index.html")
 
 def contact_view(request):
-    return render(request , "website-pages/contact.html")
+    return render(request , "website/contact.html")
 
 def about_view(request):
-    return render(request , "website-pages/about.html")
+    return render(request , "website/about.html")
 
 def json_test(request):
     return JsonResponse({"name" : "samim"})
 
 def http_test(request):
     return HttpResponse("this is test for http-response")
+
+def test_view(request):
+    return render(request , "website/test.html" , {'name' : 'sepehr' , 'lastname' : 'abbaspour'})
 
 
 #hala bebinim chetor mishe be jaye inke khodemoon hey matn bedim be http response , 

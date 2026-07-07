@@ -29,8 +29,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("" , include("website.urls"))
-    #path("blog/" , include(blog.urls)) #in masala baraye ye safhe dige hast ke marboot be chizaei ke ma load mikonim 
+    path("" , include("website.urls")),
+    path("blog/" , include("blog.urls")) #in masala baraye ye safhe dige hast ke marboot be chizaei ke ma load mikonim 
     #tooye server asli django nadare va joda hast
 
 

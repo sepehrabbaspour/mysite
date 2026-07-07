@@ -37,10 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website.apps.WebsiteConfig' #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
+    'website.apps.WebsiteConfig',
+    'blog' #be in soorat ham mishe app tarif kard tooye setting
+      #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
     #dar edame eshare konim be pooshe apps ke tooye tamam application ha vojood dare.
     #dar nahayat ye class tooye app neveshte shode ba nam WebsiteConfig ke dar edame app varedesh mikonim
     #in sakhtar baraye hame app ha be yhe soorat hast vali esm app ha fargh mikone.
+
 ]
 
 #deghat kon tooye ezafe kardan app mesl line 40 , bayad esm app , pooshe app va dar nahat esmsh
