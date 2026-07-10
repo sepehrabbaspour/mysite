@@ -25,8 +25,10 @@ def json_test(request):
 def http_test(request):
     return HttpResponse("this is test for http-response")
 
+context = {'name' : 'sepehr' , 'lastname' : 'abbaspour'}
+
 def test_view(request):
-    return render(request , "website/test.html" , {'name' : 'sepehr' , 'lastname' : 'abbaspour'})
+    return render(request , "website/test.html" , context)
 
 
 #hala bebinim chetor mishe be jaye inke khodemoon hey matn bedim be http response , 
