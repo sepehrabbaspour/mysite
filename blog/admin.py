@@ -12,7 +12,7 @@ class PostAdmin(admin.ModelAdmin):
     # va agar tak eleman bood mesl inja , oon eleman ro minevisim va ye (,) baadesh mizarim. daghigha mesl inja
     list_display = ('title' , 'counted_views' , 'status' , 'published_date' , 'created_date')
     list_filter = ('status',) #deghat kon age yedoone ham bood be soorat tuple midim 
-    ordering = ['-created_date'] #deghat kon be soorat liste !!
+    #ordering = ['-created_date'] #deghat kon be soorat liste !!
     search_fields = ['title' , 'content'] #deghat kon be soorat liste !!
 
 #admin.site.register(Post , PostAdmin) #ba in ravesh rejister mikonim class moon (model moon) ro ke tooye panel admin betoonim model moon ro bebinim
@@ -93,3 +93,4 @@ class PostAdmin(admin.ModelAdmin):
 
 #ina kheli tedadesh zaide vali ina bishtarin chizayi bood ke niaze. ke mishe shakhsi sazi ham kard ke tooye proje haye vaghei
 #behesh miresim
+
