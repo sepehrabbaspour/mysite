@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    {{posts}}    {% comment %} namayesh eleman hayi ke tooye safhe test.html pas dadim be soorat list{% endcomment %}
+
+    {% for post in posts %} {% comment %} estefade az for ha dar motor jinja eyn python mimone taghriba{% endcomment %}
+        {% comment %} faghat deghat kon ke for be soorat function neveshte beshe va na attribute yani injoori {% for... %}{% endcomment %}
+        {% if post.status == 0 %}
+            <p>Not published yet</p>
+                {% else %}
+                <h1>{{post.title}}</h1>
+                <p>{{post.content}}</p> {% comment %} eyn python migim hala bia va variable post ke tarif kardim ro namayesh bede {% endcomment %}
+                {% comment %} ye nokte : chon eleman haye tabale be soorat list namayesh dade mishe eyn python ba halghe for bahash kar mikonim
+                dar nahayat tag <p> mige ke be ezeaye har eleman ye paragraph joda moshakhas kon ke posht sar ham nanevise va har kodoom 
+                az eleman ha tooye yek khat bashand
+                {% endcomment %}
+                {% comment %} post khali faghat name haye tabale (oonam be khater __str__ ke tarif kardim) ro dare neshoon miode
+                age __str__ ro tarif nemikardim tooye file models.py chiz dige ie neshoon mikdad behemoon {% endcomment %}
+
+                <small>{{post.published_date}}</small>
+                {% comment %} in baraye namayesh publish_date {% endcomment %}
+                {% comment %} hatma bayad daroon amalkard {{}} bashe ta kar kona be joz in kol safhe ro mirize beham{% endcomment %}
+                {% comment %} har kodoom ham behemoon None barmigardoone chon taien nakardim barash {% endcomment %}
+            {% endif %}
+    {% endfor %} {% comment %} dar for ha tooye jinja bayad moshakhas beshe ke for koja tamoom shode va be in soorat minevisim  {% endcomment %}
+    {% comment %} hala ma be joz name attribute haye dige ie ham dashtiom dige doroste? status , content ,... chejoori oona ro biarim?
+    mitoonim begim {{post.content}} eyn class ke be attribute hash dastresi dashtim. dar in soorat faghat content haro darim
+    dar asl agar in nabashe mesl ghabl faghat title haro khahim dasht.
+    
+    hala baraye inke ham title dashte bashim va ham content haro mitoonim ye tag <h1> bezarim va title haro tooye head benevisimesh
+    alan ham title haro darim tooye tag <p> va ham title haro darim tooye tag <h1> 
+    {% endcomment %}
+
+    {% comment %} baraye if neveshtan 2 rah vojood dare : rah osooli ine ke tooye views.py in karo anjam bedim ke 
+    tooye comment hash neveshtam chikar kardam. ye rah dige ham ine ke haminja in shart ro barash bezarim ke block if ro neveshtim
+    {% endcomment %}
+    {% comment %} hata mitoonim block else ham bezarim0. deghat kon block else niazi be bastan nadare va bayad tooye if neveshte beshe {% endcomment %}
+    {% comment %} alan oonayi ke publish nashodan (status=0) not publish yet va dar gheyr in soorat bashe (status=1) namayesh mide {% endcomment %}
+    {% comment %} hata elif ham mishe estefade kar be hamin soorat. ye if , daroonesh chandin elif , ye else va dar nahayat 
+    endif. yadet bashe faghat if va for ta injaye kar bastan mikhan, if va eolif niaz nadaran
+    {% endcomment %}
+    {% comment %} in indent ha ham vajeb nistan vali baraye dark behtar code hast {% endcomment %}
+</body>
+</html>
