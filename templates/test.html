@@ -6,10 +6,15 @@
     <title>test</title>
 </head>
 <body>
-    {{posts}}    {% comment %} namayesh eleman hayi ke tooye safhe test.html pas dadim be soorat list{% endcomment %}
+    <p>{{post.published_date}}</p>
+</body>
+</html>
 
-    {% for post in posts %} {% comment %} estefade az for ha dar motor jinja eyn python mimone taghriba{% endcomment %}
-        {% comment %} faghat deghat kon ke for be soorat function neveshte beshe va na attribute yani injoori {% for... %}{% endcomment %}
+
+    {% comment %} {{posts}}    namayesh eleman hayi ke tooye safhe test.html pas dadim be soorat list{% endcomment %}
+
+    {% comment %} {% for post in posts %} estefade az for ha dar motor jinja eyn python mimone taghriba {% endcomment %}
+        {% comment %} faghat deghat kon ke for be soorat function neveshte beshe va na attribute yani injoori {% for... %}
         {% if post.status == 0 %}
             <p>Not published yet</p>
                 {% else %}
@@ -22,12 +27,12 @@
                 {% comment %} post khali faghat name haye tabale (oonam be khater __str__ ke tarif kardim) ro dare neshoon miode
                 age __str__ ro tarif nemikardim tooye file models.py chiz dige ie neshoon mikdad behemoon {% endcomment %}
 
-                <small>{{post.published_date}}</small>
+                {% comment %} <small>{{post.published_date}}</small> {% endcomment %}
                 {% comment %} in baraye namayesh publish_date {% endcomment %}
                 {% comment %} hatma bayad daroon amalkard {{}} bashe ta kar kona be joz in kol safhe ro mirize beham{% endcomment %}
                 {% comment %} har kodoom ham behemoon None barmigardoone chon taien nakardim barash {% endcomment %}
-            {% endif %}
-    {% endfor %} {% comment %} dar for ha tooye jinja bayad moshakhas beshe ke for koja tamoom shode va be in soorat minevisim  {% endcomment %}
+            {% comment %} {% endif %} {% endcomment %}
+    {% comment %} {% endfor %} dar for ha tooye jinja bayad moshakhas beshe ke for koja tamoom shode va be in soorat minevisim  {% endcomment %}
     {% comment %} hala ma be joz name attribute haye dige ie ham dashtiom dige doroste? status , content ,... chejoori oona ro biarim?
     mitoonim begim {{post.content}} eyn class ke be attribute hash dastresi dashtim. dar in soorat faghat content haro darim
     dar asl agar in nabashe mesl ghabl faghat title haro khahim dasht.
@@ -45,5 +50,4 @@
     endif. yadet bashe faghat if va for ta injaye kar bastan mikhan, if va eolif niaz nadaran
     {% endcomment %}
     {% comment %} in indent ha ham vajeb nistan vali baraye dark behtar code hast {% endcomment %}
-</body>
-</html>
+    {% comment %} khob imja tamam mavared ro be jahar khoondan comment mikonam chon inja ye seri kar darim :) {% endcomment %}
