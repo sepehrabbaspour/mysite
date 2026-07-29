@@ -5,10 +5,19 @@ from blog.models import Post #table post ro inja import mikonim
 #faghat get_object_or_404 ro import mikonim 
 #hala query variable post paien ro berim be shekli benevisim ke aval biad barresi kone , age vojood dasht namayesh bede , 
 #agar vojood nadasht , be jaye error , 404 behemoon bargardoone
+from django.utils import timezone
 
 
 def blog_view(request):
-    posts = Post.objects.filter(status=1)
+    posts = Post.objects.filter(
+        status=1,
+        published_date__lte = timezone.now()
+    )
+
+    for post in posts:
+        post.counted_views += 1
+        post.save()
+
     context = {'posts':posts}
     return render(request , 'blog/blog-home.html' , context)
 
@@ -17,7 +26,10 @@ def blog_single(request):
     return render(request , 'blog/blog-single.html' , context)
 
 def test(request , pid): #migim gharare baraye to ye motagher voroodi be esm name biad
-    #posts = Post.objects.all()
+    # posts = Post.objects.filter(
+    #     status=1,
+    #     published_date__lte = timezone.now()
+    # )
     post = get_object_or_404(Post , pk=pid)
     #inja migim ke bro barresi kon , agar dakhel model post man shakhesi ba filteri ke alan behet dadam (pk ke hamoon primery key hast)
     #(mitoonim ba id ham benevisim hich farghi nadare) vojood dare ya na ke primery key ham barabar hamoon pid ke beheah dadim bashe
@@ -50,3 +62,10 @@ def test(request , pid): #migim gharare baraye to ye motagher voroodi be esm nam
 #har chand ta shakhesi ke tooye urls tarif karde bashim inja bayad neveshte bashan va tooye context ham neveshte beshan
 #masala dar inja seta parametr bayad be url bedim ta kar kone : 2 ta string , ye doone int
 
+
+#chikar konam ke joftesh baham nayad? masala oon yeki safhe khali bede?
+
+
+
+
+#jvklsvlksvkjsdvk
