@@ -4,9 +4,9 @@ from blog.views import *
 app_name = 'blog'
 
 urlpatterns = [
-    path("" , blog_view , name='index'),
-    path("single" , blog_single , name='single'),
-    path('post-<int:pid>' , test , name='test'),
+    path('' , blog_view , name='index'),
+    path('<int:pid>' , blog_single , name='single'), #injoori behesh migim age post man ba ye id hamgam bood to miri be view 
+    #marboot be blog single moraje mikoni, hala chon bana shod faghat id bedim , post- az avalesh pak mikonim va faghat id midim
 ]
 
 
