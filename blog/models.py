@@ -1,10 +1,32 @@
 from django.db import models
-
+from django.contrib.auth.models import User #mige modelasion user django dare az django.contrib.auth.models miad
 # Create your models here.
 
 class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte mishe 
     #image
-    #author
+    author = models.ForeignKey(User,on_delete=models.SET_NULL , null=True)
+    #inja migim author man gharare bere br modelasion marboot be user negah kone
+    #va yek nafar ke man az tooye oon modelasion entekhab mikonam ro baraye man be onvan nevisande post dar nazar begire
+    #tooye arg aval behesh migim az che table ie dare miad foreign key man? marboot be kodoom table mishe?
+    #az tabale User ke importesh kardim va be onvan arg aval minevisimesh
+
+    #hala bakhsh dovom arg voroodi ma marboot be in mishe ke
+    #dar vaghe mikhad maro mojab kone ke agar gharar bashe az modelasioni estefade kone ke foreign key hast 
+    #bayad hatma behesh bigim ke zamani ke man masla in field ro delete kardam (post ro delete kardam) , bakhsh marboort be usersh
+    #ya har chizi ke hastesh, masala migim ye post montasher shode ba folan user , baad tooye table user , oon useri ke post montasher 
+    #karde ro hazf mikonam. hala inja mikhaym begim vaghti in user hazf shod , jaygah in user ro chikar konam ? 
+    #post haye marboot be oon user ro ham oak konam ? ya faghat jaygah user ro khali bezaram ? 
+    #in dige bastagi be khodam dare ke mikahm chikar bikonam ba post haye montasher shode.
+    #agar be onvan arg dovom begim on_delete=models.SET_NULL , khalish mikone jaye author ro
+    #deghat kon agar bekhaym set_null anjam bedim rooye author moon , bayad behesh begim ke jaygah to mitoone khali ham bashe
+    #yani be in soorat on_delete=models.SET_NULL , null=True , ina bayad reaayat beshan.
+    #dar nahayat bayad roosh makemigrations , migrate anjam beshe.
+
+    #agar ham begim on_delete=models.CASCADE ke hamzaman ba pak shodan user , post haye marboot be oon ham pak beshan. 
+    #ke in be khodem rabt dare ke policy va ghavanin ro chetor bechinim
+     
+    
+
     title = models.CharField(max_length=255) #feild #hamoon attribute ha be onvan field mahsoob mishan
     content = models.TextField() #field 
     #tag
