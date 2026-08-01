@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User #mige modelasion user django dare az django.contrib.auth.models miad
 # Create your models here.
 
+class Category(models.Model):
+    name = models.CharField(max_length=255) #goftim ke tooye ctegory ye seri esma darim dige , inja ham attribute name midim.
+    def __str__(self):
+        return self.name
+
 class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte mishe 
     image = models.ImageField(upload_to = 'blog/' , default='blog/defult.jpg')
     author = models.ForeignKey(User,on_delete=models.SET_NULL , null=True)
@@ -30,7 +35,8 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
     title = models.CharField(max_length=255) #feild #hamoon attribute ha be onvan field mahsoob mishan
     content = models.TextField() #field 
     #tag
-    #category
+    category = models.ManyToManyField(Category) #in mitoone null bashe vali lazem nist behesh begim , 
+    #khode django ino midoone ke many to many field mitoone null ham bashe
     counted_views = models.IntegerField(default=0) #(default=0) migim meghdar avaliesh 0 bashe
     status = models.BooleanField(default=False) #yani meghdar avalie ash false bashe
     published_date = models.DateTimeField(null=True) #ino chon khodemoon gharare tarif konim va bana nist az jayi biad khali mizarim
@@ -43,6 +49,8 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
         ordering = ['-created_date']
         # verbose_name = 'پست'
         # verbose_name_plural = 'پست ها'
+        def __str__(self):
+            return self.title
         
 
 #tooye char field hatma bayad benevisim ke chand karacter mikhaynm vared konim hadaksar. estandard khasi ham nadare.
@@ -102,3 +110,11 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
 #asami marboot be modelasion ro taghir bedim. yani nemikham class poost ro biam ye chiz dige bezaram va taghir bedam
 #vali mikham moghe namayesh az ye chiz dige estefade konam. inja in ravesh be kar miad.
 #ke albate inja fela verbose_name , verbose_name_plural be karemoon nemiad va commentesh mikonam
+
+
+
+#khob baraye category ha goftim ke lazeme ye table jadid ijad konim . esmesh bashe category ,
+#va daroonesh ye seri asami gharare injad konim ke misazimesh bala , hala chera bala chon bayad dar edame azash estefade konim
+#va dastani ke dare ine ke django mesl python khat be khat ejra mishe , pas aval misazim va baad ejrash mikonim.
+
+#category = models.ManyToManyField(Category) : dar in line be in soorat az category estefade mikonim.

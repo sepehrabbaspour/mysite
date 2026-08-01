@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post #esm classi ke tooye models blog sakhtim 
+from blog.models import Post , Category #esm classi ke tooye models blog sakhtim , inja post ro ham ezafe mikonim.
 
 # Register your models here.
 
@@ -15,6 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     #ordering = ['-created_date'] #deghat kon be soorat liste !!
     search_fields = ['title' , 'content'] #deghat kon be soorat liste !!
 
+admin.site.register(Category) #ino niaz nist mesl ghabli ha begim masala admin.site.register(Post , PostAdmin) , category kafie
 #admin.site.register(Post , PostAdmin) #ba in ravesh rejister mikonim class moon (model moon) ro ke tooye panel admin betoonim model moon ro bebinim
 
 

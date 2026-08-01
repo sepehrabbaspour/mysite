@@ -91,10 +91,22 @@
 							<div class="single-post row">
 								<div class="col-lg-3  col-md-3 meta-details">
 									<ul class="tags">
-										<li><a href="#">Food,</a></li>
-										<li><a href="#">Technology,</a></li>
-										<li><a href="#">Politics,</a></li>
-										<li><a href="#">Lifestyle</a></li>
+										{% for cat in post.category.all %} {% comment %} boro tooye post , category , hamasho begir {% endcomment %}
+											<li><a href="#">{{cat.name}}</a></li>
+											{% comment %} hala ke inaro gereftim rikhtimesh tooye cat dige , hala boro name hasho biar
+											khob name haro niaz dashtim dige tooye category , va in name tooye modelasion class Category tarif shode
+											dar nahayat faght tag link a ro montaghel mikonim be bala ke baghie ham halat link begire
+											{% endcomment %}
+										{% endfor %}
+										
+										{% comment %} mishe ham be jaye halghe for kola oon halghe for ro nanevisim
+										va az in tavesh estefade konim
+										{% endcomment %}
+										{{post.category.all|join:", "}}
+										{% comment %} alabte age ino bezarim daroon link joft category ha ba ham link mishan 
+										dige joda joda nistan
+										{% endcomment %}
+
 									</ul>
 									<div class="user-details row">
 										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{post.author.get_full_name}}</a> <span class="lnr lnr-user"></span></p>
