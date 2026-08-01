@@ -3,7 +3,7 @@ from django.contrib.auth.models import User #mige modelasion user django dare az
 # Create your models here.
 
 class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte mishe 
-    #image
+    image = models.ImageField(upload_to = 'blog/' , default='blog/defult.jpg')
     author = models.ForeignKey(User,on_delete=models.SET_NULL , null=True)
     #inja migim author man gharare bere br modelasion marboot be user negah kone
     #va yek nafar ke man az tooye oon modelasion entekhab mikonam ro baraye man be onvan nevisande post dar nazar begire
