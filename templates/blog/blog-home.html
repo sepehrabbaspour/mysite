@@ -141,7 +141,23 @@
 									</div>
 									<a class="posts-title" href="{% url 'blog:single' pid=post.id %}"><h3>{{post.title}}</h3></a>
 									<p class="excert">
-										{{post.content}}
+										{{post.content|truncatechars:100}}
+										{% comment %} inja migim az tooye post hamoon content ro bargardoon be jaye snippets 
+										vali ba in filteri ke behem midam yani truncatechars:9
+										injoori migim 9 kalame aval content ro joda kon va namayesh bede
+										9 har az content na 9 kalame
+										dar in soorat oon ... akharash ke masala mikhastim begim in mat edame dare
+										khod be khod handel mishe 
+										har tedad harfi ke bekhaym behesh midim hatma nabayd 9 ta bashe
+										nokte jaleb injast ke agar masala bedim 100 ta va oon content tamoom beshe dige ... nadarim jelosh
+										pas template tag ha kheili mitoonam kar maro rahat konand
+										hala dige niazi ham be function snippets ie ke tooye models app blog tarif kardim nadarim
+
+										ye chiz kheyli jaleb truncatechars tedad horoof kalamat ro dar nazar migire (masala 100 harf)
+										amma truncatewords tedad kalamt ro dar bar migirad (masala 100 kalame)
+
+										har 2 ina ... ro handel mikonand
+										{% endcomment %}
 									</p>
 									<a href="{% url 'blog:single' pid=post.id %}" class="primary-btn">View More</a>
 								</div>

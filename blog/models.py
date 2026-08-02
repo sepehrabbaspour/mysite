@@ -118,3 +118,22 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
 #va dastani ke dare ine ke django mesl python khat be khat ejra mishe , pas aval misazim va baad ejrash mikonim.
 
 #category = models.ManyToManyField(Category) : dar in line be in soorat az category estefade mikonim.
+
+#khob tooye modelasion faghat bayad ba bahs haye marboot be modelasin kar konim ? na kar haye dige ham mishe kard.
+#masala barye kholase kardan matn ha biaim va ye function trif konim be nam snippets ,
+#hala vaghti in function ro farakhooni mikonam mikham mikham ye reshte behem bargarde ke be in soorat minevisimesh
+#faghat deghat kon in daghigha bayad zir class meta neveshte beshe na ye indent dakhel tar!!!!!
+#dar gheyr in soorat kar nemikone
+#hala ma ino tooye template az for post ie ke sakhtim oonja migim post.snippets
+#vali alan moshkeli ke hast ine ke baraye tamam post ha in ye chiz sabete , chetor motagheyarsh konam ? yani vabesyte be oon elemani 
+#bashe ke dare call mishe 
+#alan ma inja ye elemani be esm content tooye object moon darim pas migim 
+#alan inja bayad begim self.content ke mohtaviat content be ma bargarde va baad berim rooye baghie ash kar konim.
+#hala dige lazem nist rooye khode content kari anjam bedim ? chera chon ye function mojaza az content sakhtam 
+#(dar vaghe az attribute content sakhtam) ke alan be ma in ghodrat ro mide ke rooye in har kari delam bekhad anjam bedam
+#ke masala be in halat migim ta 100 charakter aval sho behem bede be in soorat
+
+    # def snippets(self):
+    #     return self.content[0:100] +  '...' #in (...) ye chiz tazeini hast ke masala mikhaym begim in matlab edame dar hast
+
+#hala in karo ba template tag ha ham mishe anjam dad khob : be in soorat ke tooye blog-home migim 
