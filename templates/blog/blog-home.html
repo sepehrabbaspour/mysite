@@ -91,21 +91,33 @@
 							<div class="single-post row">
 								<div class="col-lg-3  col-md-3 meta-details">
 									<ul class="tags">
-										{% for cat in post.category.all %} {% comment %} boro tooye post , category , hamasho begir {% endcomment %}
-											<li><a href="#">{{cat.name}}</a></li>
+										{% comment %} {% for cat in post.category.all %} boro tooye post , category , hamasho begir {% endcomment %}
+											{% comment %} <li><a href="#">{{cat.name}}</a></li> {% endcomment %}
 											{% comment %} hala ke inaro gereftim rikhtimesh tooye cat dige , hala boro name hasho biar
 											khob name haro niaz dashtim dige tooye category , va in name tooye modelasion class Category tarif shode
 											dar nahayat faght tag link a ro montaghel mikonim be bala ke baghie ham halat link begire
 											{% endcomment %}
-										{% endfor %}
+										{% comment %} {% endfor %} {% endcomment %}
 										
 										{% comment %} mishe ham be jaye halghe for kola oon halghe for ro nanevisim
 										va az in tavesh estefade konim
 										{% endcomment %}
-										{{post.category.all|join:", "}}
+										{% comment %} {{post.category.all|join:", "}} {% endcomment %}
 										{% comment %} alabte age ino bezarim daroon link joft category ha ba ham link mishan 
 										dige joda joda nistan
 										{% endcomment %}
+
+										{% comment %} asl kar ma injoori mishe {% endcomment %}
+
+										{% for cat in post.category.all %}
+											<a href="#">{{cat.name}}</a> {% if not forloop.last %} , {% endif %}
+											{% comment %} dar inja az tooye post.category tamam objecgt hasho gereftim va rikhtim tooye cat {% endcomment %}
+											{% comment %} hala ye tag <a> baz mikonim ke in category ha halat link ham dashte bashand {% endcomment %}
+											{% comment %} dar nahayat mizan href ri # mizarim chera ? chon nemidoonim fela chi mikhaym bezarim toosh {% endcomment %}
+											{% comment %} ba in kar baad az click rooye href barmigardim tooye safhe asli moon {% endcomment %}
+											{% comment %} if ie ke dar edame href neveshtim be in mana ast ke agar halghe for {% endcomment %}
+											{% comment %} dar akharin doe lhod nabood! (,) ro bezar {% endcomment %}
+										{% endfor %}
 
 									</ul>
 									<div class="user-details row">
@@ -116,7 +128,9 @@
 										{% comment %} agar id author ro tooye bakhash users haye admin bekhaym migim post.author.id {% endcomment %}
 										{% comment %} agar username sh ro bekhaym bayad begim post.author.username , ke mire inam az safhe admin mikhoone {% endcomment %}
 										{% comment %} agar ham esm tarafo kamel bekhaym neshoon bedim migim post.author.get_full_name {% endcomment %}
-										<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{post.published_date}}</a> <span class="lnr lnr-calendar-full"></span></p>
+										<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{post.published_date|date:"d M Y"}}</a> <span class="lnr lnr-calendar-full"></span></p>
+										{% comment %} deghat kon agar tooye format dadan ba tarikh va zaman fasele vojood dashte bashe error khahim dasht {% endcomment %}
+										{% comment %} agar bekhaym ba function haye template tag ye amaliati anjam bedim {%example %} injoori bashe kar nemikone!!! {% endcomment %}
 										<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.counted_views}} Views</a> <span class="lnr lnr-eye"></span></p>
 										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>						
 									</div>
