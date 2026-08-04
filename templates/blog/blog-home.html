@@ -195,22 +195,42 @@
 			                            <button type="submit"><i class="fa fa-search"></i></button>
 			                        </form>
 								</div>
-								<div class="single-sidebar-widget user-info-widget">
-									<img src="{% static "img/blog/user-info.png" %}" alt="">
-									<a href="#"><h4>Charlie Barber</h4></a>
-									<p>
-										Senior blog writer
-									</p>
-									<ul class="social-links">
-										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="fa fa-github"></i></a></li>
-										<li><a href="#"><i class="fa fa-behance"></i></a></li>
-									</ul>
-									<p>
-										Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.
-									</p>
-								</div>
+								
+								{% include 'blog/blog-writer.html' %}
+
+								{% comment %} dar vaghe in ghesmat ke hazf shod daroon ye file dige ie ke tooye pooshe
+								templates/blog tooye file blog-writer.html hast ke be oonja montaghel shode khob
+								alan ma inja mesl halati bood ke tooye base migoftim ye block content darim 
+								va baad tooye safhe asli extend mikardim az oon safhe base.html
+								
+								in ja be in sorat migim ke boro va mohtaviat felan safhe ro dar bar begir , kodoom safhe ? blog-writer
+								faghat faramoosh nakon ke hatma hatma bayad tooye safhe blog-home.html load static anjam bedim
+								dar gheyr in soorat kar nemikone
+
+								{% include "blog/blog-writer.html" %} 
+								dar inja dar vaghe migim ke boro az tooye pooshe template ke barat tarif kardam tooye setting
+								(lazem nist inja dige benevisimesh template ro tooye address)
+								boro tooye pooshe blog va boro soragh blog-writer.html va mahtaviatesh ro dar bar begir,
+								va biar inja ghararesh bede.
+
+								faghat load static nabayad faramoosh beshe , farghi baraye include ya block nadare 
+								agar darim az template tag haye marboot be static estefade mikonim bayad load static anjam bedim hatma
+								
+								hala ke in karo anjam dadim har ja va be har tedad ke bekhaym mitoonam azash estefade konim.
+								hata tooye blog-single ke alan estefade kardim.
+
+								ye khoobi dige ham ke dare age faghat tooye file blog-writer.html ye chizi ro taghir bedam 
+								hameja taghir mikone va lazem nist hey taki taki hame ja taghir sh bedam.
+								masala mikham esm ro avaz bokonam va esm khodam ro bezaram. faghat kafie tooye file blog-writer
+								esm ro taghir bedam va tamam hame ja taghir mikone , tooye har 2 ta safhe  :))))
+								agar lazem bashe ye elemani tooye safahat be tedad tekrar beshe in rah besiar khoob va estandardi hast.
+
+								alan masala berim baraye bakhsh haye dige ham in karo anjam bedim. masala baraye tablighat(ads)
+
+
+
+								{% endcomment %}
+
 								<div class="single-sidebar-widget popular-post-widget">
 									<h4 class="popular-title">Popular Posts</h4>
 									<div class="popular-post-list">
@@ -252,9 +272,10 @@
 										</div>															
 									</div>
 								</div>
-								<div class="single-sidebar-widget ads-widget">
-									<a href="#"><img class="img-fluid" src="{% static "img/blog/ads-banner.jpg" %}" alt=""></a>
-								</div>
+
+								{% include 'blog/blog-ads.html' %}
+								{% comment %} inam baraye tablighat blog-home :)))) {% endcomment %}
+
 								<div class="single-sidebar-widget post-category-widget">
 									<h4 class="category-title">Post Catgories</h4>
 									<ul class="cat-list">
