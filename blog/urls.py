@@ -7,6 +7,7 @@ urlpatterns = [
     path('' , blog_view , name='index'),
     path('<int:pid>' , blog_single , name='single'), #injoori behesh migim age post man ba ye id hamgam bood to miri be view 
     #marboot be blog single moraje mikoni, hala chon bana shod faghat id bedim , post- az avalesh pak mikonim va faghat id midim
+    path('test' , test , name='test')
 ]
 
 
