@@ -22,7 +22,7 @@
 
     <h3>test: {% posts as totalposts%}<h3>
     {% for post in totalposts %}
-        <p>{{post}}</p>
+        <p>{{post.content|snippet:50}}</p>
     {% endfor %}
 
     {% comment %} ye kar jalebi ke mishe anjam dad ine ke mitoonim az totalpost blog tags ke in esm ro behesh dadim va inja pas dadim

@@ -99,3 +99,8 @@ def function():
 
 #hala be farz agar bekhaym post haro az haminja peyda konim chetor ?  
 
+#khob ye model az filter haro didim ke hamoon truncatechars:100 bood ke ba function snippet sakhtimesh
+
+@register.filter #in bar register ma az noe filter hast
+def snippet(value , arg=20):
+    return value[:arg] + '...'
