@@ -21,10 +21,23 @@
     {% comment %} baraye posts dar file blog_tags.py{% endcomment %}
 
     <h3>test: {% posts as totalposts%}<h3>
+
+    <p>====================================================================</p>
+
     {% for post in totalposts %}
         <p>{{post.content|snippet:50}}</p>
     {% endfor %}
 
+    <p>====================================================================</p>
+
+    {% for post in totalposts %}
+        <p>{{post.title}}</p>
+    {% endfor %}
+
+    <p>====================================================================</p>
+
+    {% popularposts %}
+    
     {% comment %} ye kar jalebi ke mishe anjam dad ine ke mitoonim az totalpost blog tags ke in esm ro behesh dadim va inja pas dadim
     be onvan ye moteghayer voroodi tooye safhe azash estefade konim. be in soorat ke {% totalposts %} ro be in soorat taghir midim
     {% totalposts as tp %}

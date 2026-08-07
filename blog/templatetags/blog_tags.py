@@ -104,3 +104,69 @@ def function():
 @register.filter #in bar register ma az noe filter hast
 def snippet(value , arg=20):
     return value[:arg] + '...'
+
+#inja migim #rigister.filter yani chi ? 
+#tooye ijad kardan function ha hich tafavoti vojood nadare
+#dar vaghe ye function darim be esm snippet ke ye voroodi dare be nam value
+#dar edame ham migim in value ro 100 kalame avalesh ro baram joda kon yani return value[:20]
+#registeri ke in bar mikhaym anjam bedim az noe filter hast 
+#hala ino chetor mishe test kard ? 
+#post ie ke tooye for dovom test.html daram ro be onvan voroodi behet midam montaha filter ha be in soorat nistand
+#ke be soorat arguman behesh pas bedim.
+#vaghti ye filteri ro anjam midim saze ash be in sootare ke post|snippet
+#dar vaghe elemani ke mikahym pas bedim gharare yeki az voroodi ha bashe , hamooni ke ghabl az | gharar migire
+#hala gharare che amaliati roosh anjam beshe ? snippet dige. dar vaghe hamchin halati khahim dasht {{post|snippet}}
+#amma dar in soorat error darim chon khode post ro nemitoonim roosh snippet bezarim. gharar bood ba content in karo bokonim.
+#pas darim {{post.content|snippet}} dar in soorat kar khahad kard. 
+#hala agar bekhaym tedad kalamt ro be soorat defult dashte bashe yani tooye voroodi haye function migim :
+#def snippet(value , arg=20) injoori dige har jayi tooye function esmi az arg biarim hamoon tedad 20 ta mishine sar jash
+#yani injoori return value[:arg] be jaye arg meghdar 20 mishine magar injoori beginm ke [:100] injoori 100 mishine jash
+#amma inja ma arg tarif kardim ke ino taghir nadim dige , mitoonim tooye safhe be soorat dasti voroodi bedim masla :
+#{{post.content|snippet:50}} inja 50 dar nazar gerefte mishe bejaye arg ke 20 tarif karde boodim. dar vaghe bejaye 20 kalame aval 
+#50 kalame aval namayesh dade mishe
+# in '...' akharesh ham migim baraye inke neshoon bedim in matn edame dare
+#dar vaghe amalkard marboot be truncat ro khodemoon sakhtim.
+
+
+
+#inclusion tag: inclusion tag be ma in tavanayi ro mide ke betoonim dar hengami ke darim ye meghdari ro barmigardoonim
+#az tarigh ye safhe in karo anjam bedim yani chi ? yani man ye safhe asli daram ke tooye oon safhe function man dare anjam mishe
+#hala ma ba include kar karde boodim dige yani ye safhe dige bood ke ejaze midad too oon safhe ie ke man include sh mikardam
+#ezafe beshe mohtavaitsh. hala inclusion tag hami karop anjam mide ba in fargh ke ye function sakhtari hastesh ke miad va ye seri
+#amaliat ro anjam mide , amaliat anjam dade shode ro mirizie daroon safhe va
+#ye chizi taghriba shabih kar ba view va render kardan template bood tooye safahat
+#ye makhlooti az inast ke be ma tavanayi mide ke tasir bishtari tooye safahat dashte basham.
+
+#dar vaghe kari ke mikhaym anjam bedim ine ke chizayi ke darim tooye test.html tooye safhe barmigardoonim
+#biaim va az ye safhe dige in etelat ro biarim. oon ye safhe dige popularposts hastesh ke tooye pooshe template misazimesh
+
+#hala baraye in kar mesl hamishe ye function minevisim : 
+
+@register.inclusion_tag('popularposts.html')
+def popularposts():
+    posts = Post.objects.filter(status=1).order_by('published_date')[:1]
+    return {'posts':posts}
+    #order_by mige moratab kon bar asas har chizi , masala alan inja published_date gozashtim ke begim kodoom post ha jadid tar oomadan
+    #khob hala dige baraye return kardan nemigim posts ro return kon , mikhaym begim too oon safhe return sh kon
+    #ma tooye safahat key value ie eleman midadim doroste ? 
+    #decoratoresh be in soorat mishe @register.inclusion_tag (az tag inclusion tag estefade mikonim)
+    #yeki az arguman hayi ke tooye inclusion tag bayad bedim oon safhe ie hast ke mikhaym eleman haro be oonja pas bedim.
+    #hala addres oon safhe (popularposts) chie ? tooye pooshe template ye file darim be nam popularposts.html dige.
+    #mesl hamishe niaz nist khode template ro benevisim faghat migim : 'popularposts.html'
+    #dar nahayat tag inclision ma be in soorat dar miad @register.inclusion_tag('popularposts.html')
+    #hala baraye return kardanesh bayad be soorat key value ie baresh gardoonim , chon tooye safaht ham ke mikhastim bargardoonim 
+    #etelaat rop goftim be soorat key value ie amal mikardim.va hamchenin agar faghat begim return posts
+    #tooye file popularposts.html mikhaym ye object ie ro bargardoonim nemishe azash estefade kard 
+    #pas bayad be soorat key value ie baresh gardoonim yani return {'posts' : posts}
+    #dar vaghe migim ye kilid darim be nam posts ke eleman haye marboot be posts man darooneshe
+    #ye seri tozihat daroon popularposts.html vojood dare.
+    #be onvan ghadam akhar bayad call sh konam chetori ? 
+    #be in soorat ke tooye file test.html minevisim {% esm function %} ke dar inja popularpots hast yani be ebarati darim
+    #{% popularposts %}
+    #hala kheyli kar haye dige ham mishe kard masala mitoonim 1 post akhar ro ba list slice begirim yani:
+    #posts = Post.objects.filter(status=1).order_by('published_date')[:1]
+    #ye chizi agar tooye order_by ke goftim bar asas published dateinaro namayesh bede , 
+    #in bar asas jadid tarin post ha az lahaz tarikh oona ro moratab mikone
+    #agar biaim va ye (-) bezarim poshtesh yani : order_by('-published_date')
+    #in amalkard baraks khahad shod yani az post haye ghadimi be jadid namayesh dade mishan.
+    #hala mishe safahat moteaded ezafe kard va kar haye bishtari niz anjam dad ba hamin seta register mitoonim dashte bashim.
