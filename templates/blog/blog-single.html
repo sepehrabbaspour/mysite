@@ -214,8 +214,16 @@
 								{% include 'blog/blog-writer.html' %}
 								{% comment %} nevisande blog {% endcomment %}
 
-								{% include 'blog/blog-popular-posts.html' %}
+								{% comment %} {% include 'blog/blog-popular-posts.html' %} {% endcomment %}
 								{% comment %} baraye popular posts {% endcomment %}
+
+								{% latestposts %}
+
+								{% comment %} chera in karo kardim ? khob ghabla mohtaviat popular posts 
+								va har chizi ke inja bood ro bordim tooye ye file joda va goftim in mavared ro dar bar begir ba include
+								hala migim chi ? darim esm oon function ie ro seda mizanim ke ke tooye blog_tags neveshtimesh
+								baraye akharin post hamoon. daghigha mesl kari ke tooye test.html anjam dadim
+								{% endcomment %}
 
 								{% include 'blog/blog-ads.html' %}
 								{% comment %} inam az tablighat blog-single :))))) {% endcomment %}
