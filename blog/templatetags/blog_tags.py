@@ -1,5 +1,6 @@
 from django import template
-from blog.models import Post
+from blog.models import Post #baraye post ha
+from blog.models import Category #baraye category ha
 
 register = template.Library()
 
@@ -170,3 +171,33 @@ def latestposts(arg=3):
     #agar biaim va ye (-) bezarim poshtesh yani : order_by('-published_date')
     #in amalkard baraks khahad shod yani az post haye ghadimi be jadid namayesh dade mishan.
     #hala mishe safahat moteaded ezafe kard va kar haye bishtari niz anjam dad ba hamin seta register mitoonim dashte bashim.
+
+@register.inclusion_tag('blog/blog-post-categories.html')
+def postcategories():
+    posts = Post.objects.filter(status=1)
+    categories = Category.objects.all() 
+    cat_dict = {}
+    #categories : inam mesl post , migim har chi object tooye category darim bardar biar tamam category hamo
+    #hala kari ke mikhaym bokonim ine ke chetor behesh begim tamam post hayi ke daram tedad category hayi ke marboot 
+    #be oon post hastesh ro shomaresh konam va dar kenar esm sh bezar 
+    #tedad post haro ba count() dar miavordim amma in be dard kar ma nemikhore.
+    #pas bayad in karo bokonim : behesh begim boro be ezaye name hayi ke tooye categories hastand check kon bebin kodoom post ha
+    #shamel in mishe ba for 
+    
+    for name in categories:
+        cat_dict[name] = posts.filter(category=name).count() 
+    return {'categories' : cat_dict}
+        #migim boro tooye post ha filter kon bar asas oonayi ke category shoon barabar name category ie hastesh ke
+        #man daram behesh midam , yani migam boro doone doone tamam post hamo negah kon bebin kodoom hashoon ba in category ie ke esmesho
+        #daram tak tak behet midam yekie 
+        #hala ye masale ie : inaro man chetor zakhie konam va bargardoonam ? mishe ba dictionary ino halesh kard.
+        #daghigha zir variable categories daram minevisamesh. ye dicionary khali misazam va miam behesh eleman ezafe mikonam
+        #eleman ha banast chi bashe ? key ash barabar esm oon category hast , va value barabar tedad post hayi ke marboot be oon category hastesh
+        #hala migim chi ? cat_dict[name] = posts.filter(category=name).count()
+        #yani dar vaghe darim migim ke tooye halghe for bia har bar be cat_dict ie ke balatar sakhtam , bar asas key ke esmet bood
+        #chio ezafe kon ? post haro begard peyda kon bar asas oon chizi ke name sh moshabeh ine va ba count tedadesh ro shomaresh kon
+        #ba in ravesh man mitoonam be oon dictionary ke daram misazam eleman hayi ke mortabet hasto vasl konam va berizam toosh
+        #hala chetor baresh gardoonim ?
+        #ye esm behesh midam masala categories va value sho barabar cat dict mizarim yani be in soorat : return {'categories' : cat_dict}
+        
+

@@ -1,5 +1,6 @@
 	{% extends "base.html" %}
 	{% load static %}
+	{% load blog_tags %}
 
 	{% block content %}
 
@@ -12,7 +13,7 @@
 							<h1 class="text-white">
 								Dude You’re Getting
 								a Telescope				
-							</h1>	
+							</h1>
 							<p class="text-white">
 								There is a moment in the life of any aspiring astronomer that it is time to buy that first
 							</p>							
@@ -231,8 +232,10 @@
 								{% include 'blog/blog-ads.html' %}
 								{% comment %} inam baraye tablighat blog-home :)))) {% endcomment %}
 
-								{% include 'blog/blog-post-categories.html' %}
+								{% comment %} {% include 'blog/blog-post-categories.html' %} {% endcomment %}
 								{% comment %} inja baraye category ha  {% endcomment %}
+
+								{% postcategories %}
 
 								{% include 'blog/blog-newsletter.html' %}
 								{% comment %} baraye news letter ha {% endcomment %}
