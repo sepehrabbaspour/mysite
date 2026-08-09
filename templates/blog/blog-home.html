@@ -111,7 +111,7 @@
 										{% comment %} asl kar ma injoori mishe {% endcomment %}
 
 										{% for cat in post.category.all %}
-											<a href="#">{{cat.name}}</a> {% if not forloop.last %} , {% endif %}
+											<a href="{% url 'blog:category' cat_name=cat.name %}">{{cat.name}}</a> {% if not forloop.last %} , {% endif %}
 											{% comment %} dar inja az tooye post.category tamam objecgt hasho gereftim va rikhtim tooye cat {% endcomment %}
 											{% comment %} hala ye tag <a> baz mikonim ke in category ha halat link ham dashte bashand {% endcomment %}
 											{% comment %} dar nahayat mizan href ri # mizarim chera ? chon nemidoonim fela chi mikhaym bezarim toosh {% endcomment %}
