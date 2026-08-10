@@ -8,12 +8,27 @@ from blog.models import Post #table post ro inja import mikonim
 from django.utils import timezone
 
 
-def blog_view(request):
+def blog_view(request , **kwargs):
     posts = Post.objects.filter(
         status=1,
         published_date__lte = timezone.now()
     )
+    if kwargs.get('cat_name') != None:   
+        posts = posts.filter(category__name=kwargs['cat_name'])
 
+    if kwargs.get('author_username') != None:
+        posts = posts.filter(author__username=kwargs['author_username'])
+
+        #baraye kwargs tooye paratez gozashtan faghat baraye method get hast. 
+        #agar kwargs khali oomad bayad begim kwargs['cat_name'] , mesl halat list
+        #inam bastegi be khodemoon dare ke tak tak eleman bedim ya az kwargs estefade konim farghi nadare.
+        #zamani mishe az kwargs estefade kard ke mesl inja eleman ha key value ie bian
+        #vaghti ham mikhaym ba ye meghdari moghayese beshe bayad be in soorat bedim hatma author__username=kwargs['author_username']
+        #dar vaghe mige agar vojood dasht meghdaresh ro bezar baraye author__username
+        #if kwargs.get('cat_name') != None inja ham migim agar barabar ba none nabood , yani agar vojood dasht.
+        #baraye in ke be error ie nakhorim
+
+    
     context = {'posts':posts}
     return render(request , 'blog/blog-home.html' , context)
 
@@ -40,3 +55,19 @@ def blog_category(request , cat_name):
     context = {'posts' : posts}
     return render(request , 'blog/blog-home.html' , context)
 
+
+
+#noskhe ghabli bedoon kwargs
+# def blog_view(request , cat_name=None , author_username=None):
+#     posts = Post.objects.filter(
+#         status=1,
+#         published_date__lte = timezone.now()
+#     )
+#     if cat_name:
+#         posts = posts.filter(category__name=cat_name)
+
+#     if author_username:
+#         posts = posts.filter(author__username=author_username)
+    
+#     context = {'posts':posts}
+#     return render(request , 'blog/blog-home.html' , context)

@@ -4551,3 +4551,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 .footer-text i {
   color: #f8b600;
 }
+
+.category-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.category-link:hover {
+  color: orange;
+}
