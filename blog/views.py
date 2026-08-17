@@ -49,6 +49,20 @@ def blog_single(request , pid):
 def test(request):
     return render(request , 'test.html')
 
+def blog_search(request):
+        posts = Post.objects.filter(
+        status=1,
+        published_date__lte = timezone.now()
+    )
+        #print(request.__dict__)
+        if request.method == 'GET':
+            #print(request.GET.get('s'))
+            if s := request.GET.get('s'): 
+                posts = posts.filter(content__contains=s) #dige nemigim request.GET.get('s') chon rikhtim hamiono tooye s pas faghat migim s
+        context = {'posts':posts}
+        return render(request , 'blog/blog-home.html' , context)
+
+
 def blog_category(request , cat_name):
     posts = Post.objects.filter(status=1)
     posts = posts.filter(category__name=cat_name) #deghat kon 2 ta underline (__) mikhad baraye inke betoonim be esm category dastresi peyda konim
