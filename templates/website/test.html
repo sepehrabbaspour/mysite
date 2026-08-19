@@ -22,3 +22,35 @@ hala age ham esm ro khastim va ham famil ro bayad do ta key haro pas bedim be in
 <h1>Hi {{name}} {{lastname}}</h1>
 baraye in ghazie niazi nist load static konim
 {% endcomment %}
+
+<form action="{% url 'website:test' %}" method="post" >
+    {% csrf_token %}
+    <label>name:</label> 
+    {% comment %} ye label mamooli {% endcomment %}
+    <input name="name" type="text"><br>
+    {% comment %} ye input baraye voroodi {% endcomment %}
+
+    <label>email:</label>
+    <input name="email" type="email"><br>
+
+    {% comment %} baraye filed email {% endcomment %}
+
+    <label>subject:</label>
+    <input name="subject" type="text"><br>
+    
+    {% comment %} baraye filed subject {% endcomment %}
+
+    <label>message:</label>
+    <input name="message" type="text"><br>
+
+    {% comment %} baraye filed message {% endcomment %}
+    
+    <button type="submit">submit</button>
+    {% comment %} ye dokme {% endcomment %}
+    {% comment %} action tooye form mige be che safhe ie banast ersal beshe {% endcomment %}
+    {% comment %} tooye method ham moshakhas mikonim ke gharare che methodi dashte bashim ke dar inja method ro post mizarim {% endcomment %}
+    {% comment %} baraye inke csrf betoone handle beshe az ye template tag be nam {% csrf_token %} estefade mikonim 
+    ke betoone oon amniat ro baraye ma ijad kone. yani hamrah ba formi ke darim ersal mikonim ye bakhsh token ham daram mifrestam.
+    deghat kon tooye form hayi ke halat post daran tooye django bayad {% csrf_token %} darj beshe hatma in ye ghanoone
+    {% endcomment %}
+    </form>

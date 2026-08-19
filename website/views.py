@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
+from website.models import Contact
 # Create your views here.
 
 #hamoon vaseti hast ke daroon sh function misakhtim va hamoon chizie ke url mano be etelaati ke,
@@ -28,6 +29,21 @@ def http_test(request):
 context = {'name' : 'sepehr' , 'lastname' : 'abbaspour'}
 
 def test_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name') #baraye daryaft eleman ha az method post
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        #baraye inke betoonan daryaft beshan bayad chizi ke dare get mishe ba name input yeki bashe
+        #in name az koja oomade ? tooye app website , test.html baraye input ye attribute name tarif kardm , in hamoone
+        c = Contact() #c contactor man hast , lazeme ke az tooye webste.models Contact ro import konim 
+        c.name = name #injoori behesh attribute midadim , name sh barabar name ie hast ke man daram migiram va midam , 
+        #yani hamin name ie ke balatar dadim behesh , baraye baghie ham be hamin soorat
+        c.email = email
+        c.subject = subject
+        c.message = message
+        c.save() #dar nahayat object c sakhte shode ro save kontooye data base. method haye dige mesl delete , ... darim ke tooye ducmetion bekhoon
+        print(name , email , subject , message)
     return render(request , "website/test.html" , context)
 
 
