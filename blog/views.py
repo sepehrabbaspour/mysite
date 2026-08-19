@@ -6,6 +6,10 @@ from blog.models import Post #table post ro inja import mikonim
 #hala query variable post paien ro berim be shekli benevisim ke aval biad barresi kone , age vojood dasht namayesh bede , 
 #agar vojood nadasht , be jaye error , 404 behemoon bargardoone
 from django.utils import timezone
+from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
+ #paginator : baraye dasgte bandi safahhat va namayesh oona tooye chand safhe ne serfa 1 safhe
+ #EmptyPage : baraye inke safahat khli ro handel konim.
+ #PageNotAnInteger : baraye inke agar karbar chizi joz adad ke safhe page mishe call kard in bahs handel beshe
 
 
 def blog_view(request , **kwargs):
@@ -19,6 +23,16 @@ def blog_view(request , **kwargs):
     if kwargs.get('author_username') != None:
         posts = posts.filter(author__username=kwargs['author_username'])
 
+    posts = Paginator(posts , 3) #object post haye man be onvan arg avalesh miad , arg dovom migim 3 ta 3 ta mikhaym dashte bandi konim
+    
+    try:
+        page_number = request.GET.get('page')
+        posts = posts.get_page(page_number)
+    except PageNotAnInteger: #agar voroodi chizi joz adad bood
+        posts = posts.get_page(1) #safhe 1 ro boro bardar biar
+    except EmptyPage: #agar safhe ie ke call kardim khali bood , masala safhe 100 
+        posts = posts.get_page(1) #boro va safhe 1 ro bardar biar
+
         #baraye kwargs tooye paratez gozashtan faghat baraye method get hast. 
         #agar kwargs khali oomad bayad begim kwargs['cat_name'] , mesl halat list
         #inam bastegi be khodemoon dare ke tak tak eleman bedim ya az kwargs estefade konim farghi nadare.
@@ -28,6 +42,7 @@ def blog_view(request , **kwargs):
         #if kwargs.get('cat_name') != None inja ham migim agar barabar ba none nabood , yani agar vojood dasht.
         #baraye in ke be error ie nakhorim
 
+    
     
     context = {'posts':posts}
     return render(request , 'blog/blog-home.html' , context)
