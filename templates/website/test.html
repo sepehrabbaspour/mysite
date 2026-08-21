@@ -25,26 +25,27 @@ baraye in ghazie niazi nist load static konim
 
 <form action="{% url 'website:test' %}" method="post" >
     {% csrf_token %}
-    <label>name:</label> 
+    {% comment %} <label>name:</label>  {% endcomment %}
     {% comment %} ye label mamooli {% endcomment %}
-    <input name="name" type="text"><br>
-    {% comment %} ye input baraye voroodi {% endcomment %}
+    {% comment %} <input name="name" type="text"><br> {% endcomment %}
+    {% comment %} ye input baraye voroodi {% endcomment %} 
+    {% comment %} {{form}} {% endcomment %}
+    {% comment %} amala dige field balayi ro nemikhaym {% endcomment %}
+    {% comment %} object formi ke tooye forms.py neveshtim ro mikhaym namaytesh bedim ke faghat ye attribute name dasht
+    inja entezar mire etelaat oon chizi ke ijad kardam ro behem namayesh bede
+    deghat kon ke tooye views va forms bayad asami yeksan bashand 
+    {% endcomment %}   
 
-    <label>email:</label>
-    <input name="email" type="email"><br>
+    {{form.as_p}} 
+    {% comment %} in as_p chikar mikone ? baes mishe ke maghadir form ma har kodoom tooye ye paragraf bian
+    in khodesh har kodoom az eleman haro be soorat khodkar mibare tooye ye paragraf gharareshoon mide. p manzoor hamoon tag <p> hast
 
-    {% comment %} baraye filed email {% endcomment %}
+    masala mitoonim begim as_table shabih ye jadval mishe ke rooye ina kheyli kar saz nist
+    as_ul ham darim ke hamoon unorder list hastesh ke bazam inja sazgar nist 
+    {% endcomment %}
 
-    <label>subject:</label>
-    <input name="subject" type="text"><br>
-    
-    {% comment %} baraye filed subject {% endcomment %}
+    {% comment %} yadet nare ke in {{form}} az klid ie hast ke baraye form tooye view tarif kardim miad {% endcomment %}
 
-    <label>message:</label>
-    <input name="message" type="text"><br>
-
-    {% comment %} baraye filed message {% endcomment %}
-    
     <button type="submit">submit</button>
     {% comment %} ye dokme {% endcomment %}
     {% comment %} action tooye form mige be che safhe ie banast ersal beshe {% endcomment %}
@@ -54,3 +55,24 @@ baraye in ghazie niazi nist load static konim
     deghat kon tooye form hayi ke halat post daran tooye django bayad {% csrf_token %} darj beshe hatma in ye ghanoone
     {% endcomment %}
     </form>
+
+
+{% comment %} ina ro baraye nemoone negah dashtam {% endcomment %}
+
+    {% comment %} <label>name:</label>
+    <input name="sname" type="text"><br> {% endcomment %}
+
+    {% comment %} <label>email:</label>
+    <input name="email" type="email"><br> {% endcomment %}
+
+    {% comment %} baraye filed email {% endcomment %}
+
+    {% comment %} <label>subject:</label>
+    <input name="subject" type="text"><br> {% endcomment %}
+    
+    {% comment %} baraye filed subject {% endcomment %}
+
+    {% comment %} <label>message:</label>
+    <input name="message" type="text"><br> {% endcomment %}
+
+    {% comment %} baraye filed message {% endcomment %}

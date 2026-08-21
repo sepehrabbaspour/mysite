@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse
 from website.models import Contact
+from website.forms import NameForm
 # Create your views here.
 
 #hamoon vaseti hast ke daroon sh function misakhtim va hamoon chizie ke url mano be etelaati ke,
@@ -30,21 +31,48 @@ context = {'name' : 'sepehr' , 'lastname' : 'abbaspour'}
 
 def test_view(request):
     if request.method == 'POST':
-        name = request.POST.get('name') #baraye daryaft eleman ha az method post
-        email = request.POST.get('email')
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
-        #baraye inke betoonan daryaft beshan bayad chizi ke dare get mishe ba name input yeki bashe
-        #in name az koja oomade ? tooye app website , test.html baraye input ye attribute name tarif kardm , in hamoone
-        c = Contact() #c contactor man hast , lazeme ke az tooye webste.models Contact ro import konim 
-        c.name = name #injoori behesh attribute midadim , name sh barabar name ie hast ke man daram migiram va midam , 
-        #yani hamin name ie ke balatar dadim behesh , baraye baghie ham be hamin soorat
-        c.email = email
-        c.subject = subject
-        c.message = message
-        c.save() #dar nahayat object c sakhte shode ro save kontooye data base. method haye dige mesl delete , ... darim ke tooye ducmetion bekhoon
-        print(name , email , subject , message)
-    return render(request , "website/test.html" , context)
+        form = NameForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            print(name , email , subject , message)
+            return HttpResponse('done') 
+        else:
+            return HttpResponse ('not valid')
+        #inja migim ye form darim ke esmesh name form hast
+        #hala etelaat requesti karbaram ro mikham beriazam tooye in form ke sakhtim objectesh ro hamin alan
+        #yani masala name har chizi ke hastesh ro mikhad ba in form barabar bezare ke mishe in khat form = NameForm(request.POST)
+        #va chio barresi kone ? bebine az tooye formi ke dare miad etelaatesh ba shakhes hayi ke vase ma tarif shode tooye fom ma barabari 
+        #dare ya na! masala ma darim ye type khasi mifrestim ke text nist vali oontaraf goftam ke hatma bayad text bashe.
+        #masala injoori man tooye field name daram email mifresdtam , khob in mire oonja barresi mishe ke aya man daram etelaat dorosti
+        #mifrestam ya na ke tooye in khate : if form.is_valid()
+        #ba http response ham tooye ye safhe dige baresh migardoonam. yani in done ro tooye hamoon safhe behemon barmigardoone
+        #hala deghat kon age man biam va oon shakhes name ro be soorat dasti name sh ro avaz konam ke tooye test.hrml app website
+        #daram in karo mikonam in dige kar nemikone. post mishe vali dade rad mishe
+        #pas dade hayi ke mifrestim bayad ba field haye form moon ke tarif kardim barabari bokone ta anjam beshe gheyr az in anjam nemishe
+        #<input name="sname" type="text"> masala inja darim ke name barabar sname hast va inja chon yeki nistan anjam nemishe
+
+        
+        #in ravesh estandardesh hast
+        # name = request.POST.get('name') #baraye daryaft eleman ha az method post
+        # email = request.POST.get('email')
+        # subject = request.POST.get('subject')
+        # message = request.POST.get('message')
+        # #baraye inke betoonan daryaft beshan bayad chizi ke dare get mishe ba name input yeki bashe
+        # #in name az koja oomade ? tooye app website , test.html baraye input ye attribute name tarif kardm , in hamoone
+        # c = Contact() #c contactor man hast , lazeme ke az tooye webste.models Contact ro import konim 
+        # c.name = name #injoori behesh attribute midadim , name sh barabar name ie hast ke man daram migiram va midam , 
+        # #yani hamin name ie ke balatar dadim behesh , baraye baghie ham be hamin soorat
+        # c.email = email
+        # c.subject = subject
+        # c.message = message
+        # c.save() #dar nahayat object c sakhte shode ro save kontooye data base. method haye dige mesl delete , ... darim ke tooye ducmetion bekhoon
+        #print(name) #email , subject , message
+
+    form = NameForm()
+    return render(request , "website/test.html" , {'form':form}) #context ro hazf kardim alan
 
 
 #hala bebinim chetor mishe be jaye inke khodemoon hey matn bedim be http response , 
@@ -111,3 +139,9 @@ def test_view(request):
 
 #nokte baadi : agar darim file jadidi tooye proje misazim server django ro hatma stop,
 #va dobare start konim. chera ke momkene sakhtar django natoone oon file jadid ro tashkhis bede.
+
+#hala dede haro chetor daryaft konam ? inja baad az in ke dade ha dorost daryaft shod mitoonim dade haro clean shode 
+#az form tahvil begirm be in soorat ke balaye if minevisim: name = form.cleaned_data['name']
+#migim az tooye form ie ke dare miad oon bakhsh marboot be name ro clean data kon , deghat ke hatma bayad tooye braket bashe 
+#va oon bakhshi ham ke mikhaym clean data konim tooye '' bayad bashe. pas name ma barabar form.cleaned_data['name'] mishe.
+#baraye tamamesh in karo mitoonim anjam bedim
