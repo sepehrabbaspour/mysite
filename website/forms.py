@@ -1,7 +1,8 @@
 #in file baraye sakhtan form ha hast 
 #mesl sakhtan model ha bayad az class madar sh estefade konim ta behesh befahmoonim ke in ye forme
 from django import forms
-from website.models import Contact
+from website.models import Contact , NewsLetter #baraye sakhtan form ba forms.Modelform baraye har kodoom aval model ro misazim va 
+#baad az oon inja tooye forms.py import sh mikonim 
 class NameForm(forms.Form):  
     name = forms.CharField(max_length=255)#inam mesl hamoon kar ghbli ke goftim name input ha bayad yeki bashe ke tooye file test.html goftim
     #yani name ro harchi inja tarif konim mire mishine tooye jaye name input tooye file html
@@ -52,3 +53,8 @@ class ContactForm(forms.ModelForm):
 #hala kheli rahat mishe form ro update kard , yani be in soorat ke tooye class ContactForm migim lastname = forms.CharField(max_length=255)
 #kheyli rahat zir tamam eleman hamoon in ezafe mishe. hanooz ham mitoonim field haye dige ham ezafe konim. ke albate niazesh nadarim
 #comment sh mikonam
+
+class NewsLetterForm(forms.ModelForm): #inam form newsletter
+    class Meta:
+        model = NewsLetter #az model NewsLetter ke bala import sh kardim
+        fields = '__all__' #tamam field hasho biar.

@@ -29,7 +29,8 @@ urlpatterns = [
     path("contact/" , contact_view , name="contact"),
     path("json-test" , json_test),
     path("http-test" , http_test),
-    path("test" , test_view , name="test")
+    path("test" , test_view , name="test"),
+    path('newsletter' , newsletter_view , name='newsletter')
 
 ]
 #agar mesl path avali chizi tooye "" ke parametr aval hast nanevisim , vaghti migim 

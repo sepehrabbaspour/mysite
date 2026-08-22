@@ -19,3 +19,14 @@ class Contact(models.Model):
 
 #in file data base hayi ke gharare ijad beshe tooye in file gharar migire va neveshte mishe ke 
 #rajebeshoon mofasal sohbat mishe
+
+#baraye bakhsh newsletter (paien site) : 
+
+class NewsLetter(models.Model):
+    email = models.EmailField() #newsletter ma faghat ye email dare dige
+    #yadet nare , baraye inke field ijad beshe lazame ke migrite anjam bedam dige.
+    #be tartib , python manage.py makemigrations , python manage.py migrate
+    def __str__(self):
+        return self.email #in ghesmat baraye ine ke object moon biad
+    
+    

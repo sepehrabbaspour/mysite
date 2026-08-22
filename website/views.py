@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse , JsonResponse
+from django.http import HttpResponse , JsonResponse , HttpResponseRedirect
 from website.models import Contact
-from website.forms import NameForm , ContactForm
+from website.forms import NameForm , ContactForm , NewsLetterForm
+#yanio aval models ro misazim , tooye form import sh mikonim , ba forms.modelsform form sh ro misazim. baad form ro tooye views import mikonim
 # Create your views here.
 
 #hamoon vaseti hast ke daroon sh function misakhtim va hamoon chizie ke url mano be etelaati ke,
@@ -16,7 +17,13 @@ def index_view(request):
     return render(request , "website/index.html")
 
 def contact_view(request):
-    return render(request , "website/contact.html")
+    if request.method == 'POST':
+        form = ContactForm(request.POST) #yani karbar data ye voroodi sho mifreste az tarigh form , chon tooye model hamoon darim field hasho
+        #pas miam va az hamoon form ie ke ba model kar mikone estefade mikonam , dar vaghe ba request.POST voroodi haro migirim
+        if form.is_valid():
+            form.save()
+    form = ContactForm() #dige dade hasho nemikham , faghat mikhaym ino tooye safhe bargardoonim , indent haro deghat kon
+    return render(request , "website/contact.html" , {'form':form})
 
 def about_view(request):
     return render(request , "website/about.html")
@@ -26,6 +33,19 @@ def json_test(request):
 
 def http_test(request):
     return HttpResponse("this is test for http-response")
+
+def newsletter_view(request): #in baraye bakhsh newsletter ha , agar request karbar man az noe post bood , mikhaym bast sh bedim be ye formi
+    #form ro misazim 
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST) #hala inja oon form ie ke import kardim ro mirizim tooye object form 
+        #va ba request.POST etelaati ke karbar ferestade ro daryaft mikonim 
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/') #ba in kar mirim (redirect mishim) be safhe asli 
+    else: #agar dakhat karbar get bood , ya be har dalili anjam nashod if ma
+        return HttpResponseRedirect('/') #bazam redirect sho tooye safhe asli.
+        #dar har soorat mikham bargarde tooye safhe asli.
+        #faghat yadet bashe ke HttpResponseRedirect oon bala tooye from django.http import konim
 
 context = {'name' : 'sepehr' , 'lastname' : 'abbaspour'}
 
