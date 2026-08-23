@@ -79,6 +79,34 @@
 								</div>
 							</form>	
 						</div>
+						{% if messages %}
+							{% for message in messages %}
+							<div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+							{% endfor %}
+						{% endif %}
+
+						{% if form.errors %}
+							<div class="alert alert-error">
+							<h4>Please fix the following errors</h4>
+							<ul>
+								{% for field in form %}
+								{% if field.errors %}
+									{% for error in field.errors %}
+									<li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+									{% endfor %}
+								{% endif %}
+								{% endfor %}
+							</ul>
+							{% if form.non_field_errors %}
+								{{ form.non_field_errors }}
+							{% endif %}
+							</div>
+						{% endif %}
+						{% comment %} ino az google search kardam django forms error in template va az in link peydash kardam
+						Show messages and errors in Django templates. Useful to ... , mal git hub hastesh
+						injoori kheyli rahat mishe hame irad haye form ro handle kard , ke agar tooye form etefaghi oftad betoonam
+						be karbaram befahmoonam ke oon irad az noe chie 
+						{% endcomment %}
 					</div>
 				</div>	
 			</section>

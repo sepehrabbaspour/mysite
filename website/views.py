@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse , JsonResponse , HttpResponseRedirect
 from website.models import Contact
 from website.forms import NameForm , ContactForm , NewsLetterForm
+from django.contrib import messages #in mal zamanie ke 
 #yanio aval models ro misazim , tooye form import sh mikonim , ba forms.modelsform form sh ro misazim. baad form ro tooye views import mikonim
+from django.contrib import messages #in mal zamanie ke karbar ma masala behemoon ticket zade , doroste ke ma daryaft mikonim alan ticket
+#ro , vali ticket che dorost bashe che eshtebah , ba barname ma karbar barmigarde tooye safhe asli , va hich peyghami nadarim mabni bar inke
+#ticket to masala daryaft shod , ba freamwork message mishe in karo kard. 
 # Create your views here.
 
 #hamoon vaseti hast ke daroon sh function misakhtim va hamoon chizie ke url mano be etelaati ke,
@@ -22,6 +26,15 @@ def contact_view(request):
         #pas miam va az hamoon form ie ke ba model kar mikone estefade mikonam , dar vaghe ba request.POST voroodi haro migirim
         if form.is_valid():
             form.save()
+            messages.add_message(request , messages.SUCCESS , 'your ticket submited successfully')
+            #injoori bayad ba message hga kar konim ke : mikhaym ye message az noe add message dashte bashim ke betoonim 
+            #ye message ezafe konim , in message be request karbar man motesel mishe va dige lazem nist baresh gardoonam
+            #noe message SUCCESS bashe , va matnsh ham har chizi mitoone bashe 
+        else:
+            messages.add_message(request , messages.ERROR , 'Your ticket didnt submited')
+            #dar gheyr in soorat agar if anjam nashod va form save nashod ya har moshkeli pish oomad , 
+            #eyn hamoon balayi vali tip sh az noe error bashe , matn sh ham ke har chizi mitoone bashe.
+            #amma in alan kar nemikone , chon tooye template nagoftim jaye neshoon dadan in message koja bashe.
     form = ContactForm() #dige dade hasho nemikham , faghat mikhaym ino tooye safhe bargardoonim , indent haro deghat kon
     return render(request , "website/contact.html" , {'form':form})
 
