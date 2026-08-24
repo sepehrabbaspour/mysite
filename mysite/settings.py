@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.humanize', #in ye majule hast ke baraye har che rahat tar kardan khandan zaman azash estefade mishe.
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
     'blog' #be in soorat ham mishe app tarif kard tooye setting
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     #dar edame eshare konim be pooshe apps ke tooye tamam application ha vojood dare.
     #dar nahayat ye class tooye app neveshte shode ba nam WebsiteConfig ke dar edame app varedesh mikonim
     #in sakhtar baraye hame app ha be yhe soorat hast vali esm app ha fargh mikone.
+    
 
 ]
 

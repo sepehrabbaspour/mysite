@@ -1,3 +1,5 @@
+{% load humanize %}
+{% comment %} har jayi ke bekhaym az majule humanize estefade konim eyn static ha bayad load sh konim {% endcomment %}
 {% load static %}
                                 <div class="single-sidebar-widget popular-post-widget">
 									<h4 class="popular-title">Popular Posts</h4>
@@ -10,7 +12,36 @@
 											</div>
 											<div class="details">
 												<a href="{% url 'blog:single' pid=post.id %}"><h6>{{post.title}}</h6></a>
-												<p>{{post.published_date|date:'d M Y'}}</p>
+												{% comment %} <p>{{post.published_date|date:'d M Y'}}</p> {% endcomment %}
+												{% comment %} <p>{{8|apnumber}}</p>
+												<p>{{4000000|intcomma}}</p>
+												<p>{{4000000|intword}}</p>
+												<p>{{post.published_date|naturalday}}</p> {% endcomment %}
+												<p>{{post.published_date|naturaltime}}</p>
+												{% comment %} baraye humanize ye seri fiter ha darim ke kar haye mokhtalef anjam mide
+												yeki az filter ha apnumber hast ke adad voroodi maro ta zamani ke koochik tar az 10 bashe
+												be halat one two three ,... minevise , khode 10 shamel nemishe , dar asl tabdil be ye reshte mikone
+												agar 10 ya balatar bashe , hamoono barmigardoone. be in soorat estefade mishe ke <p>{{1|apnumber}}</p>
+												yani migim adad 1 ro filter kon bar asas apnumber. comment shode
+
+												intcomma chikar mikone ? agar ye adadi toolani bashe miad va 3ta 3ta az rast jodash mikone
+												va cooma mizare va be in soorat estefade mishe : <p>{{4000000|intcomma}}</p>
+
+												intword chikar mikone ? oon adad bozorgi ke darim masala 4 million inja darim 
+												be in soorat minevise ke 4.0 million va be in soorat neveshte mishe : <p>{{4000000|intword}}</p>
+												agar ham masala bezanim 4,200,000 be in halat mishe ke 4.2 million
+
+												naturalday : 3 ta shakhes bishtar nadare : dirooz , emrooz , farda , dar gheyr in soorat
+												khode reshte oon tarikh ro bar migardoone agar bein in seta nabashe , yani tarikh mal 
+												dirooz , emrooz ya farda nabashe , khode reshte tarikh ro barmigardoone.
+												va be in soorat neveshte mishe : <p>{{post.published_date|naturalday}}</p>
+												agar bein dirooz , emrooz va farda bashe , yesterday , today , tomarrow neshoon mide
+												gheyr az in bashe khode tarikh ro bar migardoone.
+
+												amma naturaltime : be in soorat amal mikone ke mige in post masala chand rooz pish ya
+												chand hafte pish montasher shode , masala 1 day ago , 1 week age ya hata 3 weeks , 4 days ago
+												dar vaghe joori time ro taghir mide ke behtar ghabel dark bashe
+												{% endcomment %}
 											</div>
 										</div>	
 										{% endfor %}													
