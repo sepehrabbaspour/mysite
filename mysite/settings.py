@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.humanize', #in ye majule hast ke baraye har che rahat tar kardan khandan zaman azash estefade mishe.
+    'django_extensions', #in mal django_extensions hast ke baraye estefade hatma bayad tooye installed apps ezafe beshe.
+    'django.contrib.sites', #in baraye majule site hastesh
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
     'blog' #be in soorat ham mishe app tarif kard tooye setting
@@ -54,6 +56,18 @@ INSTALLED_APPS = [
 #mishe ham faghat esm khode app ro nevesht yani injoori kw faghat benevisim website
 #baste be kari ke mikhaym bokonim motafavete (har 2 estandard hast)
 #tozih midim har 2 ro , entekhabesh bastegi be khodmoon dare vali karbord ha fargh dare.
+
+SITE_ID = 2 #in site id baraye majule site hast ke ham mishe az tooye data base in id ro be dast avord 
+#va ham mishe vared panel admin shod va oonja tooye bakhsh site oon jayi ke ye addres jadid tarif kardim 
+#rooye url tooye search bar bezanim id sh maloome 
+#tooye meghdar site id ke inja tarif kardim hamoon adad ro minevisim
+
+#albate yadet nare tooye admin tooye bakhsh site ye site jadid besazi ke vaghti app site ro inja tooye settingezafe kardim 
+#bayad migrate konim 
+
+#dar vaghe chizi ke be proje ezafe shode ine ke serfa oomadim va barash taien kardam ke gharare esm to va amalkardi ke
+#banast dashte bashi bar asas in id va in name gharare bashe 
+#in alan faghat setup bood , behesh miresim
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
