@@ -18,7 +18,14 @@ from django.contrib import admin
 from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from website.sitemaps import StaticViewSitemap #az app website , file sitemaps.py class StaticViewSitemap
+from blog.sitemaps import BlogSitemap #in baraye blog site maps ke import sh kardim 
 
+sitemaps = {
+    'static': StaticViewSitemap, #az app website , file sitemaps.py class StaticViewSitemap
+    'blog': BlogSitemap, #estefade az BlogSitemap ke importesh kardim
+}
 
 #marhale aval vasl kardan path be view
 #esm pooshe asli hatma zekr beshe inja / dar vaghe tooye directory feli ke code man dare ejra mishe , 
@@ -30,8 +37,15 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("" , include("website.urls")),
-    path("blog/" , include("blog.urls")) #in masala baraye ye safhe dige hast ke marboot be chizaei ke ma load mikonim 
+    path("blog/" , include("blog.urls")), #in masala baraye ye safhe dige hast ke marboot be chizaei ke ma load mikonim 
     #tooye server asli django nadare va joda hast
+    
+    path( #baraye sitemap
+    "sitemap.xml",
+    sitemap,
+    {"sitemaps": sitemaps},
+    name="django.contrib.sitemaps.views.sitemap",
+)
 
 
     #http-test hamoon addresi hast ke tooye url bala browser mibinim. 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize', #in ye majule hast ke baraye har che rahat tar kardan khandan zaman azash estefade mishe.
     'django_extensions', #in mal django_extensions hast ke baraye estefade hatma bayad tooye installed apps ezafe beshe.
     'django.contrib.sites', #in baraye majule site hastesh
+    'django.contrib.sitemaps', #in baraye sitemap hastesh va baad az site gharar migire
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
     'blog' #be in soorat ham mishe app tarif kard tooye setting

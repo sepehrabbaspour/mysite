@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User #mige modelasion user django dare az django.contrib.auth.models miad
+from django.urls import reverse #import kardan reverse ha
 # Create your models here.
 
 class Category(models.Model):
@@ -51,6 +52,27 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
         # verbose_name_plural = 'پست ها'
         def __str__(self):
             return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:single',kwargs={'pid':self.id})
+
+    #ghabl az har chizi yadet bashe ke from django.urls import reverse bala import koni 
+    #in modelasion marboot be app blog hast pas minevisimesh.
+    #hala be che safahati mikhaym eshare konim ? safahat marboot be single
+    #hala chejoori eleman ha ya arguman hayi ke mikham behesh bedam ro barash taien konim ? mishe barash kwargs nevesht.
+    #ye seri key value behesh bedim.
+    #hala key value ha banast chi bashan ? tooye urls haye marboot be app blog , tooye ghesmat blog_single goftim ke ye
+    #arguman pid gharare barat biad doroste ? pas inja ham migim ye pid barat miad ke barabar chi bayad bashe ? 
+    #oon posti ke darim id hash doroste ? pas migim self.id
+    #hala hamin amalkard ro mishe tooye sitemap ham dasht tooye def location.
+
+    #hala ye nokte in get_absolute_url be ye seri chiza tooye sakhtar django vasl hastesh. be chia  ? 
+    #yekish in ghabeliat ke zamani ke ma yeki az post hamoon ro tooye bakhsh marboot be tanzimat oon post hastesh negah mikonim
+    #mishe oon bala ye dokme ezafe kard ke mano mostaghima vasl kone be oon post ke betoonam bebinamesh
+    #ke be vasete get_absolute_url ie ke inja neveshtim in emkan moyasar mishe. 
+    #ye dokme view on site baramoon ezafe mishe. va az tooye safhe admin maro vasl mikone ke betoonim oon safhe ro bebinim.
+    #pishnahad mishe joftesho negah darim , ham function location in kar sitemap ro anjam mide baramoon va ham
+    # #function get_absolute_url , vali olaviat ba def location tooye sitemaps.py hast 
         
 
 #tooye char field hatma bayad benevisim ke chand karacter mikhaynm vared konim hadaksar. estandard khasi ham nadare.
