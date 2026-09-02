@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar', #debug_toolbar hatma bayad baad az django.contrib.staticfiles biad be khater ye seri masael az pish taien shode
     #hala hatma khat baadi ham na vali baadesh bayad biad
+    'taggit', #baraye taggit
     'website.apps.WebsiteConfig',
     'blog', #be in soorat ham mishe app tarif kard tooye setting
       #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 

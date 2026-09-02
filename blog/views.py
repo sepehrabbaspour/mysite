@@ -23,6 +23,10 @@ def blog_view(request , **kwargs):
     if kwargs.get('author_username') != None:
         posts = posts.filter(author__username=kwargs['author_username'])
 
+    if kwargs.get('tag_name') != None:
+        # posts = posts.filter(author__username=kwargs['tag_name'])
+        posts = posts.filter(tags__name__in=[kwargs['tag_name']])
+
     posts = Paginator(posts , 3) #object post haye man be onvan arg avalesh miad , arg dovom migim 3 ta 3 ta mikhaym dashte bandi konim
     
     try:

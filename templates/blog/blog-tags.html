@@ -1,17 +1,13 @@
+{% load static %}
 								<div class="single-sidebar-widget tag-cloud-widget">
 									<h4 class="tagcloud-title">Tag Clouds</h4>
 									<ul>
-										<li><a href="#">Technology</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Architecture</a></li>
-										<li><a href="#">Fashion</a></li>
-										<li><a href="#">Food</a></li>
-										<li><a href="#">Technology</a></li>
-										<li><a href="#">Lifestyle</a></li>
-										<li><a href="#">Art</a></li>
-										<li><a href="#">Adventure</a></li>
-										<li><a href="#">Food</a></li>
-										<li><a href="#">Lifestyle</a></li>
-										<li><a href="#">Adventure</a></li>
+										{% for tag in post.tags.all %} 
+										<!-- az tooye post , boro soragh tag ha , hamasho bardar biar berizesh tooye tag -->
+											<li><a href="{% url 'blog:tag' tag_name=tag.name %}">{{tag.name}}</a></li> <!--az tooye tag ha name sh ro mikham-->
+											<!--tooye url ham migim ke boro tooye blog, tag, ye arguman mifrestim be nam tag_name ke meghdar tag.name
+											ro enteghal mide
+											-->
+										{% endfor %}
 									</ul>
 								</div>

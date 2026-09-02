@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User #mige modelasion user django dare az django.contrib.auth.models miad
 from django.urls import reverse #import kardan reverse ha
+from taggit.managers import TaggableManager
 # Create your models here.
 
 class Category(models.Model):
@@ -35,7 +36,8 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
 
     title = models.CharField(max_length=255) #feild #hamoon attribute ha be onvan field mahsoob mishan
     content = models.TextField() #field 
-    #tag
+    tags = TaggableManager() #faghat kafie TaggableManager inja biarim khodesh baghie ro handle mikone :) faghat migrate yadet nare
+    #tooye safhe admin ham khodesh namayesh dade mishe niaz be kari nist
     category = models.ManyToManyField(Category) #in mitoone null bashe vali lazem nist behesh begim , 
     #khode django ino midoone ke many to many field mitoone null ham bashe
     counted_views = models.IntegerField(default=0) #(default=0) migim meghdar avaliesh 0 bashe
