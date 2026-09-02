@@ -51,4 +51,4 @@ def location(self , item):
 #migan oon item ie ke man daram barat mifrestam az tooye def items ke query zadim (ina az pish tarif shode hast) 
 #oon item hayi ke man query kardam va daryaft kardam ro mikham tak tak ba estefade
 #az item behet bedamesh. pas object man dige esmesh self nist item hast.
-#dar vaghe agar begim item.id man ro bede , post id ro behem mide0
+#dar vaghe agar begim item.id man ro bede , post id ro behem mide.

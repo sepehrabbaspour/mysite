@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from website.sitemaps import StaticViewSitemap #az app website , file sitemaps.py class StaticViewSitemap
 from blog.sitemaps import BlogSitemap #in baraye blog site maps ke import sh kardim 
+import debug_toolbar #baraye debug toolbar
+
 
 sitemaps = {
     'static': StaticViewSitemap, #az app website , file sitemaps.py class StaticViewSitemap
@@ -45,7 +47,11 @@ urlpatterns = [
     sitemap,
     {"sitemaps": sitemaps},
     name="django.contrib.sitemaps.views.sitemap",
-)
+    ) , 
+    path('robots.txt', include('robots.urls')),  #braye robots / az tooye https://django-robots.readthedocs.io/en/latest/
+    #bakhsh Initialization avordimesh va yekami taghirat dadim ta be in soorat dar oomad
+    path('__debug__/' , include(debug_toolbar.urls)), #in path marboot be debug toolbar hast ke az ghabl barash taein shode va khodesh
+    #tashkhis mide ke in mal che karie va mifahme ina yani chi 
 
 
     #http-test hamoon addresi hast ke tooye url bala browser mibinim. 

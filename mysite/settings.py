@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'django_extensions', #in mal django_extensions hast ke baraye estefade hatma bayad tooye installed apps ezafe beshe.
     'django.contrib.sites', #in baraye majule site hastesh
     'django.contrib.sitemaps', #in baraye sitemap hastesh va baad az site gharar migire
+    'robots', #baraye robots ha , albate ghablesh bayad ba pip install django-robots tooye terminal nasbesh konim
     'django.contrib.staticfiles',
+    'debug_toolbar', #debug_toolbar hatma bayad baad az django.contrib.staticfiles biad be khater ye seri masael az pish taien shode
+    #hala hatma khat baadi ham na vali baadesh bayad biad
     'website.apps.WebsiteConfig',
-    'blog' #be in soorat ham mishe app tarif kard tooye setting
+    'blog', #be in soorat ham mishe app tarif kard tooye setting
       #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
     #dar edame eshare konim be pooshe apps ke tooye tamam application ha vojood dare.
     #dar nahayat ye class tooye app neveshte shode ba nam WebsiteConfig ke dar edame app varedesh mikonim
@@ -58,6 +61,7 @@ INSTALLED_APPS = [
 #baste be kari ke mikhaym bokonim motafavete (har 2 estandard hast)
 #tozih midim har 2 ro , entekhabesh bastegi be khodmoon dare vali karbord ha fargh dare.
 
+# site framworks
 SITE_ID = 2 #in site id baraye majule site hast ke ham mishe az tooye data base in id ro be dast avord 
 #va ham mishe vared panel admin shod va oonja tooye bakhsh site oon jayi ke ye addres jadid tarif kardim 
 #rooye url tooye search bar bezanim id sh maloome 
@@ -70,6 +74,16 @@ SITE_ID = 2 #in site id baraye majule site hast ke ham mishe az tooye data base 
 #banast dashte bashi bar asas in id va in name gharare bashe 
 #in alan faghat setup bood , behesh miresim
 
+# robots 
+ROBOTS_USE_HOST = True #in baraye ine ke agar false bood esm host to nayare tooye robots.txt ke search mikonim 
+#dar vaghe migim robots hagh nadare az host name tooye safhe namayesh sh estefade kone.
+#agar ino nanevisim namayesh dade mishe khod be khod (pish farz true hast hata age nanevisim sh)
+
+ROBOTS_USE_SITEMAP = True
+#inja behesh migim agar false bood sitemap haro ham neshoon nadi tooye safhe namayesh robots.
+#agar ino nanevisim namayesh dade mishe khod be khod (pish farz true hast hata age nanevisim sh)
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -78,6 +92,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware", #inam baraye debugger bayad tooye midelware ezafe konim
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -171,6 +186,18 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
+
+#in NTERNAL_IPS ro khodemoon ezafe kardim behesh ke baraye django debugger hast , karesh ine ke moshakhas mikone kia dastresi dashte bashan
+#ke in safhe debugger ro bebinan bayad ip ash ro moshakhas konim. karbordesh oonjast ke zamani ke proje ro rooye server deploy konim
+#be in bakhs rojoo mikone va mige in ip va serveri ke alan roosh hastam va proje dare az tarigh sh run mishe ,
+#ip dakheli hast ya az jaye dige dare tamin mishe (local hast ya az jaye dige dare miad)
+# in agar nabashe toolbar debugger asa baramoon baz nemishe
 
 
 #in file tanzimat proje mano negah dari mikone , har tanzimi ke baraye sakhtar koli proje dar nazar begirim bayad biaim inja.
