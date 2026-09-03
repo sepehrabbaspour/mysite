@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'debug_toolbar', #debug_toolbar hatma bayad baad az django.contrib.staticfiles biad be khater ye seri masael az pish taien shode
     #hala hatma khat baadi ham na vali baadesh bayad biad
     'taggit', #baraye taggit
+    'django_summernote', #baraye summernotes / nasb az pip install django_summernote
     'website.apps.WebsiteConfig',
     'blog', #be in soorat ham mishe app tarif kard tooye setting
       #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
@@ -84,6 +85,40 @@ ROBOTS_USE_SITEMAP = True
 #inja behesh migim agar false bood sitemap haro ham neshoon nadi tooye safhe namayesh robots.
 #agar ino nanevisim namayesh dade mishe khod be khod (pish farz true hast hata age nanevisim sh)
 
+#summernotes configs
+
+SUMMERNOTE_THEME = 'bs4' #inja migim summernote mitoone az bootstrap 4 estefade kone 
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True, #iframe mitoone bashe ya nabashe
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+
+        # Change editor size / tanzimat safhe 
+        'width': '420%',
+        'height': '480',
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover / tooye tool bar summer note che abzar hayi bashe.
+        #faghat tanzimati ke lazem darim ro mizarim bashe
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    }
+}
+
+#inaro az link https://github.com/lqez/django-summernote avordim va jaygozin kardim va yekami taghirat dadim
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -199,6 +234,12 @@ INTERNAL_IPS = [
 #be in bakhs rojoo mikone va mige in ip va serveri ke alan roosh hastam va proje dare az tarigh sh run mishe ,
 #ip dakheli hast ya az jaye dige dare tamin mishe (local hast ya az jaye dige dare miad)
 # in agar nabashe toolbar debugger asa baramoon baz nemishe
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+#in hamoon x frame option hast ke tooye file admin.py app blog ghesmat summernote tozihesh dadim
+
+
 
 
 #in file tanzimat proje mano negah dari mikone , har tanzimi ke baraye sakhtar koli proje dar nazar begirim bayad biaim inja.

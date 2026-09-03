@@ -1,10 +1,13 @@
 from django.contrib import admin
 from blog.models import Post , Category #esm classi ke tooye models blog sakhtim , inja post ro ham ezafe mikonim.
+from django_summernote.admin import SummernoteModelAdmin #baraye summernote / az link https://github.com/lqez/django-summernote avordimesh
 
 # Register your models here.
 
 @admin.register(Post) #az daroon admin , register va be onvan arg voroodi esm modeli ke sakhte boodim ro behesh pas midim
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin): #admin.ModelAdmin/ in model ba admin.ModelAdmin avaz shod ,
+    #ma nemitoonim har 2 model ro kenar ham dashte bashim va error darim. chon in model , khodesh class madaresh , class asli hast 
+    #vaghti do ta model ro baham miarim khob kar eshtebahie va error darim 
     date_hierarchy = 'created_date'
     empty_value_display = '-empty-'
     #fields = ('title',) #deghat kon ke in ye tuple hast va az ghavanin tuple peyravi mikone
@@ -14,6 +17,18 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('status', 'author') #deghat kon age yedoone ham bood be soorat tuple midim 
     #ordering = ['-created_date'] #deghat kon be soorat liste !!
     search_fields = ['title' , 'content'] #deghat kon be soorat liste !!
+    summernote_fields = ('content',) #bakhshi ke mikhaym summernote bashe bakhsh content hast / az link https://github.com/lqez/django-summernote avordimesh
+
+    #tooye noskhe 5.2 django ke darim bahash kar mikonim in moshkel vojood nadare vali , vaghti ma ba summernote kar mikonim 
+    #tooye noskhe haye paien tar djnago masala 3.2 , vaghti summer note ro be admin ezafe mikonim , tooye bakhsh content
+    #ba error 127.0.0.1 refused to connet darim, dar vaghe mige agar gharar bashe ye field ie ro be onvan x-frame ya i-frame estelaha
+    # bekham tooye safhe am load konam , bayad dastresi ash ro baram moshakhas konim va begim in i-frame ha ejaze daran az jaye dige ie bian
+    #ya faghat ejaze daran az khod saze ha va static ha va media haye django tamin beshan. ye seri bahs haye amniati dare in vasat
+    #bayad behesh begim to ejaze dari ke az tarigh , protocol ie ke hastesh i-frame haye dakheli ke marboot be proje man hastesh ro biari
+
+    #baraye hal in moshkel agar pish oomad , tooye setting.py migim X_FRAME_OPTIONS = 'SAMEORIGIN' , in yani az khode django va proje 
+    #va jayi ke host man hast tamin beshe in masale. 
+
 
 admin.site.register(Category) #ino niaz nist mesl ghabli ha begim masala admin.site.register(Post , PostAdmin) , category kafie
 #admin.site.register(Post , PostAdmin) #ba in ravesh rejister mikonim class moon (model moon) ro ke tooye panel admin betoonim model moon ro bebinim

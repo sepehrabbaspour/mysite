@@ -53,7 +53,15 @@
 								<div class="col-lg-9 col-md-9">
 									<h3 class="mt-20 mb-20">{{post.title}}</h3>
 									<p class="excert">
-										{{post.content}}
+										{{post.content|safe}}
+										<!--
+										in safe be khater ine ke agar tooye panel admin bakhsh marboot be post ha tooye content post moon
+										agar masala ye tag <p> bezarim in emal nemishe. chera ? chon django by defult jeloye in taghirat 
+										ro migire va mige safe nist. ma inja vaghti be in soorat amal konim {{post.content|safe}}
+										be django migim ke in bakhsh taghirat sh safe hast va mitooni ejra koni.
+										alan tooye panel admin bakhsh post ha , content ye post ro toosh tag <p></p> be kar bebarim
+										dige hich moshkeli nist va emal mishe va matn paragraph bandi mishe
+										-->
 									</p>
 
 								</div>
