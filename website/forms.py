@@ -3,6 +3,7 @@
 from django import forms
 from website.models import Contact , NewsLetter #baraye sakhtan form ba forms.Modelform baraye har kodoom aval model ro misazim va 
 #baad az oon inja tooye forms.py import sh mikonim 
+from captcha.fields import CaptchaField #baraye captcha field
 class NameForm(forms.Form):  
     name = forms.CharField(max_length=255)#inam mesl hamoon kar ghbli ke goftim name input ha bayad yeki bashe ke tooye file test.html goftim
     #yani name ro harchi inja tarif konim mire mishine tooye jaye name input tooye file html
@@ -23,6 +24,8 @@ class NameForm(forms.Form):
 
 
 class ContactForm(forms.ModelForm):
+    captcha = CaptchaField() #baraye captcha field ezafe mikonim / az link https://django-simple-captcha.readthedocs.io/en/latest/usage.html
+    #ina ro avordim
    # lastname = forms.CharField(max_length=255) 
     class Meta:
         model = Contact #deghat kon ke parantez nemikhad

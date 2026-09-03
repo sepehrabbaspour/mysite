@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     #hala hatma khat baadi ham na vali baadesh bayad biad
     'taggit', #baraye taggit
     'django_summernote', #baraye summernotes / nasb az pip install django_summernote
+    'captcha', #baraye captcha , bayad nasb sh konim ba estefade az pip install django-simple-captcha
     'website.apps.WebsiteConfig',
     'blog', #be in soorat ham mishe app tarif kard tooye setting
       #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 

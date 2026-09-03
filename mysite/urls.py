@@ -53,7 +53,9 @@ urlpatterns = [
     path('__debug__/' , include(debug_toolbar.urls)), #in path marboot be debug toolbar hast ke az ghabl barash taein shode va khodesh
     #tashkhis mide ke in mal che karie va mifahme ina yani chi 
     path('summernote/', include('django_summernote.urls')), #baraye summernote , url sh ro mesl ghabli ezafe mikonim.
-    #inaro az link zir avordim : https://github.com/lqez/django-summernote , migrate akhar yadet nare
+    #inaro az link zir avordim : https://github.com/lqez/django-summernote , migrate akhar yadet nare.
+    path('captcha/', include('captcha.urls')), #in url baraye captcha hastesh
+
 
 
     #http-test hamoon addresi hast ke tooye url bala browser mibinim. 
