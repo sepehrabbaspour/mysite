@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin', #baraye multy captcha admin , hatma ghabl az 'django.contrib.admin', ezafe beshe
+    #ba dastoor pip install django-multi-captcha-admin nasb mishe , va paien tar tanzimatesh ro anjam midim va miad tooye safhe admin
+    #niaz be hich kar khas dige ie nadare
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,7 +103,7 @@ SUMMERNOTE_CONFIG = {
         'airMode': False,
 
         # Change editor size / tanzimat safhe 
-        'width': '420%',
+        'width': '300%',
         'height': '480',
 
         # Toolbar customization
@@ -120,6 +123,15 @@ SUMMERNOTE_CONFIG = {
 }
 
 #inaro az link https://github.com/lqez/django-summernote avordim va jaygozin kardim va yekami taghirat dadim
+
+# captcha admin setting
+
+MULTI_CAPTCHA_ADMIN = { #inja dar vaghe migim ke MULTI_CAPTCHA_ADMIN ma az kodoom model captcha estefade bokone.
+    #ke anvae simple-captcha , recaptcha , recaptcha2 ro dare ke ma az simple-captcha estefade mikonim va be in soorat minevisim ke:
+    'engine': 'simple-captcha',
+} 
+
+#in va tarighe nab majule recaptcha baraye safhe admin ro az link https://github.com/a-roomana/django-multi-captcha-admin avordim 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
