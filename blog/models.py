@@ -161,3 +161,21 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
     #     return self.content[0:100] +  '...' #in (...) ye chiz tazeini hast ke masala mikhaym begim in matlab edame dar hast
 
 #hala in karo ba template tag ha ham mishe anjam dad khob : be in soorat ke tooye blog-home migim 
+
+class Comment(models.Model): #baraye system comment gozari
+    post = models.ForeignKey(Post , on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+
+    #yadet nare baraye inja aval makemigrations , baad migrate
+    
+    #ye chizi : bayad begim ke comment ha vabaste be post ha hastesh , nadashte bashe ino nemifahme 
+    #pas be in soorat migim ke posti ke to dari behesh vasl mishi az foreign key ie miad ke marboot be class Post hast va 
+    #zamani ke in post az bein mire mikhaym tamam comment hash ro pak bokone.
+    #dar vaghe migim on_delete = models.CASCADE va kole code ham be in soorate
+    #post = models.ForeignKey(Post , on_delete=models.CASCADE).

@@ -1,7 +1,8 @@
 from django.contrib import admin
-from blog.models import Post , Category #esm classi ke tooye models blog sakhtim , inja post ro ham ezafe mikonim.
+from blog.models import Post , Category , Comment #esm classi ke tooye models blog sakhtim , inja post ro ham ezafe mikonim.
 from django_summernote.admin import SummernoteModelAdmin #baraye summernote / az link https://github.com/lqez/django-summernote avordimesh
-
+#from blog.models import Comment #comment haro vared admin mikonim baraye inke betoonim neshoonesh bedim, 2 khat balatar ino neveshtim pas
+#faghat ezafash mikonim oonja
 # Register your models here.
 
 @admin.register(Post) #az daroon admin , register va be onvan arg voroodi esm modeli ke sakhte boodim ro behesh pas midim
@@ -110,3 +111,13 @@ admin.site.register(Category) #ino niaz nist mesl ghabli ha begim masala admin.s
 #ina kheli tedadesh zaide vali ina bishtarin chizayi bood ke niaze. ke mishe shakhsi sazi ham kard ke tooye proje haye vaghei
 #behesh miresim
 
+#baraye comment hayi ke dare miad ro injoori daste bandi konam va basteshoon bedim , barash ye class misazim
+
+class CommentAdmin(admin.ModelAdmin):
+    date_hierarchy = 'created_date'
+    empty_value_display = '-empty-'
+    list_display = ('name' , 'post' , 'approved' , 'created_date')
+    list_filter = ('post', 'approved') #deghat kon age yedoone ham bood be soorat tuple midim 
+    search_fields = ['name' , 'post']
+    
+admin.site.register(Comment , CommentAdmin)
