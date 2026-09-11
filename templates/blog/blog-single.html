@@ -1,6 +1,7 @@
 	{% extends "base.html" %}
 	{% load static %}
-	{% load blog_tags %}
+	{% load blog_tags %} <!--baraye load kardan file blog_tags az tooye pooshe templatetags-->
+	{% load humanize %}
 
 	{% block content %}
 			<!-- start banner Area -->
@@ -41,7 +42,10 @@
 										<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{post.author.get_full_name}}</a> <span class="lnr lnr-user"></span></p>
 										<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{post.published_date|date:"d M Y"}}</a> <span class="lnr lnr-calendar-full"></span></p>
 										<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.counted_views}} views</a> <span class="lnr lnr-eye"></span></p>
-										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>
+										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">{{comments|length}} Comments</a> <span class="lnr lnr-bubble"></span></p>
+										<!--migim be jaye in ke tedad comment haro static neshoon bedi , bia tedad sho bar asas tedad 
+										comment ha behem bede
+										-->
 										<ul class="social-links col-lg-12 col-md-12 col-6">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -93,149 +97,119 @@
 										</div>										
 									</div>									
 								</div>
-								<div class="comments-area">
-									<div id="disqus_thread"></div>
-										<script>
-											/**
-											*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-											*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-											/*
-											var disqus_config = function () {
-											this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-											this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-											};
-											*/
-											(function() { // DON'T EDIT BELOW THIS LINE
-											var d = document, s = d.createElement('script');
-											s.src = 'https://127-0-0-1-8000-eb1ghekhz6.disqus.com/embed.js';
-											s.setAttribute('data-timestamp', +new Date());
-											(d.head || d.body).appendChild(s);
-											})();
-										</script>
-										<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-									</div>
-								</div>
-							<!--
+							</div>
 							<div class="comments-area">
-								<h4>05 Comments</h4>
+								<h4>{{ comments|length }} Comments</h4> <!--migim az tooye comments ha length sh ro mikham-->
+								<!--dar vaghe tedadesh-->
+								{% comment %} <h4>{% comments_count post.id %} Comments</h4> {% endcomment %}
+								<!--alan be jaye ravesh bala ke tooye safhe amaliat ro anjam bedim , miaim va az template tagi ke sakhtim estefade mikonim-->
+								{% comment %} <h4>{% comments_count post.id %} Comments</h4> {% endcomment %}
+								<!--dar vaghe inja esm oon template tagi ke sakhtim ro miraim va code haye navashte shode
+								tooye oon template tag ejra mishan 
+								dar vaghe injoorie : migim tedad comment hario ba estefade az template tagi ke barat sakhtam behem bede
+								jayi ke post.id (pid) ro daram barat mifrestam.
+								hamoon pid ke be onvan voroodi dadim be function comments_count va pk ro barabar pid gozashtim.
+
+								ravesh aval bahtare baraye in ke ma ye bar query zadim ke etelaat safhe ro dar biram 
+								agar tedad in query ha bere bala site ma dir tar load mishe. pas hamoon ravesh aval bedoom query 
+								mirim jelo
+								-->
 								<div class="comment-list">
+								{% for comment in comments %} <!--hamoon comments ke to tooye view blog neveshtim va query sh kardim-->
                                     <div class="single-comment justify-content-between d-flex">
                                         <div class="user justify-content-between d-flex">
                                             <div class="thumb">
                                                 <img src="{% static "img/blog/c1.jpg" %}" alt="">
                                             </div>
                                             <div class="desc">
-                                                <h5><a href="#">Emilly Blunt</a></h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
+                                                <h5><a href="#">{{comment.name}}</a></h5> <!--bajaye esm static migim az comment , name sho biar-->
+                                                <p class="date">{{comment.created_date|naturalday}}</p><!--bajaye tarikh static migim az comment , created_date sho biar-->
+												<!--ye filter tarikh ham roosh gozashtim-->
                                                 <p class="comment">
-                                                    Never say goodbye till the end comes!
+                                                    {{comment.message}} <!--be jaye oon matn static comment.message ro behem bede-->
                                                 </p>
                                             </div>
                                         </div>
+										<!--
                                         <div class="reply-btn">
                                                <a href="" class="btn-reply text-uppercase">reply</a> 
                                         </div>
+										-->
                                     </div>
-                                </div>	
-								<div class="comment-list left-padding">
-                                    <div class="single-comment justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="{% static "img/blog/c2.jpg" %}" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Elsie Cunningham</a></h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                <p class="comment">
-                                                    Never say goodbye till the end comes!
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="reply-btn">
-                                               <a href="" class="btn-reply text-uppercase">reply</a> 
-                                        </div>
-                                    </div>
-                                </div>	
-								<div class="comment-list left-padding">
-                                    <div class="single-comment justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="{% static "img/blog/c3.jpg" %}" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Annie Stephens</a></h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                <p class="comment">
-                                                    Never say goodbye till the end comes!
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="reply-btn">
-                                               <a href="" class="btn-reply text-uppercase">reply</a> 
-                                        </div>
-                                    </div>
-                                </div>	
-								<div class="comment-list">
-                                    <div class="single-comment justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="{% static "img/blog/c4.jpg" %}" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Maria Luna</a></h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                <p class="comment">
-                                                    Never say goodbye till the end comes!
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="reply-btn">
-                                               <a href="" class="btn-reply text-uppercase">reply</a> 
-                                        </div>
-                                    </div>
-                                </div>	
-								<div class="comment-list">
-                                    <div class="single-comment justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="{% static "img/blog/c5.jpg" %}" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <h5><a href="#">Ina Hayes</a></h5>
-                                                <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                <p class="comment">
-                                                    Never say goodbye till the end comes!
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="reply-btn">
-                                               <a href="" class="btn-reply text-uppercase">reply</a> 
-                                        </div>
-                                    </div>
-                                </div>	                                             				
+									{% empty %} <!--mige agar ghesmat comment ha khali bood in mat zir ro benevis-->
+									<p>no comments here be the first one to tell your thoughts </p>
+								{% endfor %}
+							</div>	                                             				
 							</div>
 							<div class="comment-form">
 								<h4>Leave a Comment</h4>
-								<form>
+								<form method="post" action="{% url "blog:single" pid=post.id %}">
+									{% csrf_token %} <!--csrf token ro tooye form ezafe mikonim-->
+									<!--migim method to barabar post va action at bayad marboot be safhe blog single bashe
+									bar asas post id moon yani pid=post.id , injoori be oon safhe post moon tooye blog vasl mishe
+									-->
+									{% comment %} {{form.as_p}} <!--migim boro form ie ke sakhtam ro be soorat paragraf bandi shode biar tooye safhe--> {% endcomment %}
+									
+									<input type="hidden" name="post" value="{{post.id}}" >
+									<!--be in soporat kar mikone ke name ro barabar post mizarim chon tooye modelasion ham hamin bood
+									value ro barabar ba name post ha mizarim , albate inja id va jelosh esm field haro neveshte
+									bood tabdilesh kardim be name
+									hala har bar in safhe ro refresh konim name oon post 
+									mire mishine tooye input, by defult value sh id post mishe.
+									az forign key ash miad 
+									
+									hala vaghti type ro hidden bezarim karbar ma dige oon input ro nemibine vali amaliat anjam mishe
+
+									in kar baraye in hast ke database befahme man daram rooye che posti comment mizaram
+									-->
 									<div class="form-group form-inline">
 									  <div class="form-group col-lg-6 col-md-12 name">
-									    <input type="text" class="form-control" id="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+									    <input type="text" class="form-control" name="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
 									  </div>
 									  <div class="form-group col-lg-6 col-md-12 email">
-									    <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+									    <input type="email" class="form-control" name="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
 									  </div>										
 									</div>
 									<div class="form-group">
-										<input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
+										<input type="text" class="form-control" name="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
 									</div>
 									<div class="form-group">
 										<textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
 									</div>
-									<a href="#" class="primary-btn text-uppercase">Post Comment</a>	
+										<button type="submit" class="primary-btn text-uppercase">Post Comment</button>	
+									<!--in ro ham az tag <a> tabdil mikonim be button ba type submit-->
+									<!--yadet nare baraye in ke betoonim az form template asli moon estefade konim bayad id hash 
+									ba oon chizi ke tooye modelasion tarif kardim yeki bashe ta kar kone
+									-->
 								</form>
-							</div>
+								{% if messages %}
+							{% for message in messages %}
+							<div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+							{% endfor %}
+						{% endif %}
 
-							-->
+						{% if form.errors %}
+							<div class="alert alert-error">
+							<h4>Please fix the following errors</h4>
+							<ul>
+								{% for field in form %}
+								{% if field.errors %}
+									{% for error in field.errors %}
+									<li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+									{% endfor %}
+								{% endif %}
+								{% endfor %}
+							</ul>
+							{% if form.non_field_errors %}
+								{{ form.non_field_errors }}
+							{% endif %}
+							</div>
+						{% endif %}
+
+						{% comment %} inam baraye peygham movafaghiat amiz boodan va error ha {% endcomment %}
+							</div>
+								
+								
 						</div>
 						<div class="col-lg-4 sidebar-widgets">
 							<div class="widget-wrap">

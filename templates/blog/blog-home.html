@@ -133,7 +133,11 @@
 										{% comment %} deghat kon agar tooye format dadan ba tarikh va zaman fasele vojood dashte bashe error khahim dasht {% endcomment %}
 										{% comment %} agar bekhaym ba function haye template tag ye amaliati anjam bedim {%example %} injoori bashe kar nemikone!!! {% endcomment %}
 										<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.counted_views}} Views</a> <span class="lnr lnr-eye"></span></p>
-										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">06 Comments</a> <span class="lnr lnr-bubble"></span></p>						
+										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">{% comments_count post.id %} Comments</a> <span class="lnr lnr-bubble"></span></p>	
+										<!--inja baraye tedad comment ha bayad query bezanim be joz in bashe kar nemikone
+										bayad oon template tagi ke neveshtim ro load konim. post id ie ke dare ro barash mifrestam ke 
+										shomaresh ro anjam bede
+										-->					
 									</div>
 								</div>
 								<div class="col-lg-9 col-md-9 ">

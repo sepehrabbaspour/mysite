@@ -1,6 +1,6 @@
 from django import template
 from blog.models import Post #baraye post ha
-from blog.models import Category #baraye category ha
+from blog.models import Category , Comment #baraye category ha va Comment ha baraye shemoradn shoon
 
 register = template.Library()
 
@@ -22,6 +22,19 @@ def function():
     #1 ya true hast bai va ba count tedadesh ro beshmar , agar in nabashe natije query ro mibinim
     #method count ham baramoon mishmore tedad sho
     return posts
+
+@register.simple_tag(name='comments_count') #baraye shomaresh tedad comment ha
+def function(pid): #mitoonim behesh begim bar asas post ie ke dare miad , tedad comment haye oon post ro beshmar va behem bede , 
+    #post = Post.objects.get(pk=pid) #migim boro az tooye post ooni ke primery key ash barabar pid hast ro behem bede
+    #return Comment.objects.filter(post=post.id , approved=True).count() #hala vaghti comment haro peyda kard 
+    #count sh mikonim va meghdar count ro return mikonim 
+    #amala hamoon query ghabli moon baraye post ha va comment hast, ba yekami taghirat
+    #  serfa kafie pid oon post ro tooye voroodi function bedim.
+    #hata mitoonim query peyda kardan post haro haf konim , chon midoonim ke in post vojood dare.
+    #va faghat pid ro befrestim barash kafie yani be in soorat.
+    return Comment.objects.filter(post=pid , approved=True).count()
+    
+
 @register.simple_tag(name='posts')
 def function():
     posts = Post.objects.filter(status=1)

@@ -172,10 +172,22 @@ class Comment(models.Model): #baraye system comment gozari
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
-    #yadet nare baraye inja aval makemigrations , baad migrate
+        #yadet nare baraye inja aval makemigrations , baad migrate
+        
+        #ye chizi : bayad begim ke comment ha vabaste be post ha hastesh , nadashte bashe ino nemifahme 
+        #pas be in soorat migim ke posti ke to dari behesh vasl mishi az foreign key ie miad ke marboot be class Post hast va 
+        #zamani ke in post az bein mire mikhaym tamam comment hash ro pak bokone.
+        #dar vaghe migim on_delete = models.CASCADE va kole code ham be in soorate
+        #post = models.ForeignKey(Post , on_delete=models.CASCADE).
+
+    class Meta:
+        ordering = ['-created_date'] #hamoon class meta ke hamishe mineveshtim
+        #hala hata mishe .orderby ro tooye views blog hazf kard va ino dasht
+        #in bar hasb zamane hamoon booda ke migoftim orderby kon bar asas created_date
+        #in comment haro bar asas zaman montasher shodaneshoon miare :)
+
+    def __str__(self):
+        return self.name #in age nabashe tooye bakhsh comment ha mizane comment object
+    #behesh begim return self.name name ie ke taraf bahash comment gozashte ro namayesh mide bejaye comment object
+
     
-    #ye chizi : bayad begim ke comment ha vabaste be post ha hastesh , nadashte bashe ino nemifahme 
-    #pas be in soorat migim ke posti ke to dari behesh vasl mishi az foreign key ie miad ke marboot be class Post hast va 
-    #zamani ke in post az bein mire mikhaym tamam comment hash ro pak bokone.
-    #dar vaghe migim on_delete = models.CASCADE va kole code ham be in soorate
-    #post = models.ForeignKey(Post , on_delete=models.CASCADE).

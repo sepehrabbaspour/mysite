@@ -1,5 +1,9 @@
 from django.shortcuts import render , get_object_or_404
-from blog.models import Post #table post ro inja import mikonim
+from blog.models import Post , Comment #table post ro inja import mikonim , table comment haro ham miarim ta betoonim 
+#comment haro biarim va azashoon estefade bokonim.
+from blog.forms import CommentForm #comment form haro import mikonim
+from django.contrib import messages #baraye namayesh message ha
+
 #from django.shortcuts import get_object_or_404 : in chizi ke import kardim mikhaym kari konim ke vaghti ke safhe ie peida nemishe 
 #be jaye error , khataye 404 begirim :) vali khob niazi be tarif dobarash nist va chon django.shortcuts ro bala darim 
 #faghat get_object_or_404 ro import mikonim 
@@ -51,6 +55,16 @@ def blog_view(request , **kwargs):
     return render(request , 'blog/blog-home.html' , context)
 
 def blog_single(request , pid):
+    if request.method == 'POST':
+        form = CommentForm(request.POST) #migim az tooye comment formi ke dare miad data avalie voroodi karbaram ro barabar request.post bezar
+        if form.is_valid(): #agar form man valid bood
+            form.save() #bia save sh kon tooye data base 
+            messages.add_message(request , messages.SUCCESS , 'your comment submited successfully')
+
+        else:
+            messages.add_message(request , messages.ERROR , 'your comment didnt submited')
+
+    # migim comment che ersal shod va che nashod bargard tooye hamoon safahat post man ke tooye oon hastim
     post = get_object_or_404(
         Post,
         pk=pid,
@@ -61,7 +75,15 @@ def blog_single(request , pid):
     post.counted_views +=1
     post.save()
 
-    context = {'post':post}
+    comments = Comment.objects.filter(post=post.id , approved=True)#.order_by('-created_date')
+    #migim boro tooye table Comment , tamam object hayi ke daram ro filter kon bar asas post = post.id sh hast
+    #hala bia order kon bar asas created_date behem ina ro bargardoon. ke tooye models class meta sho tarif kardim
+    #dar nahayat bayad hamin variable comment ro be soorat key / value be contex pas bedim ke tooyhe safhe namayesh dade beshe
+    #dar edame sh migim agar approved True bood tooye data base (defult false hast) nemayesh bede tooye safhe.
+
+    form = CommentForm() #inja comment form ro migirim va mirizim tooye variable form , va pasesh midim be context baraye namayesh dar safhe
+    context = {'post':post , 'comments':comments , 'form':form}
+        
     return render(request , 'blog/blog-single.html' , context)
 
 def test(request):
