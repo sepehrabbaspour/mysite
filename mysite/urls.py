@@ -41,7 +41,7 @@ urlpatterns = [
     path("" , include("website.urls")),
     path("blog/" , include("blog.urls")), #in masala baraye ye safhe dige hast ke marboot be chizaei ke ma load mikonim 
     #tooye server asli django nadare va joda hast
-    
+    path('accounts/' , include('accounts.urls')), #ezafe kardan va include kardan app accounts be urls haye asli 
     path( #baraye sitemap
     "sitemap.xml",
     sitemap,

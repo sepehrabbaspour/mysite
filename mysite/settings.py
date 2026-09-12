@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     #ba dastoor pip install django-multi-captcha-admin nasb mishe , va paien tar tanzimatesh ro anjam midim va miad tooye safhe admin
     #niaz be hich kar khas dige ie nadare
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth', #baraye authentication / az ghabl vojood dare
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -52,10 +52,11 @@ INSTALLED_APPS = [
     'captcha', #baraye captcha , bayad nasb sh konim ba estefade az pip install django-simple-captcha
     'website.apps.WebsiteConfig',
     'blog', #be in soorat ham mishe app tarif kard tooye setting
-      #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
+    #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
     #dar edame eshare konim be pooshe apps ke tooye tamam application ha vojood dare.
     #dar nahayat ye class tooye app neveshte shode ba nam WebsiteConfig ke dar edame app varedesh mikonim
     #in sakhtar baraye hame app ha be yhe soorat hast vali esm app ha fargh mikone.
+    'accounts', #app accounts ke sakhtim baraye modiriat user ha 
     
 
 ]
