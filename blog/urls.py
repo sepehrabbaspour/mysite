@@ -1,4 +1,5 @@
 from django.urls import path
+from blog.feeds import LatestEntriesFeed #az app blog , file feeds , LatestEntriesFeed ro import kon
 from blog.views import *
 
 app_name = 'blog'
@@ -12,6 +13,9 @@ urlpatterns = [
     path('tag/<str:tag_name>' , blog_view , name='tag'), #baraye tag ha
     path('search/' , blog_search , name='search'),
     path('test' , test , name='test'),
+    path("rss/feed", LatestEntriesFeed()), #url rss feed / be in soorat taghiresh midim ke ("rss/feed", LatestEntriesFeed())
+    #tooye blog ke hastim , migim boro tooye blog , boro tooye feed.
+    #alan tooye url ha search konim 127.0.0.1:8000/rss/feed , safhe marboot be feed ha baramoon miad bala 
 
 ]
 
