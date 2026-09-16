@@ -253,7 +253,8 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 #in hamoon x frame option hast ke tooye file admin.py app blog ghesmat summernote tozihesh dadim
 
-
+# login URL for login_required
+LOGIN_URL = 'accounts:login' 
 
 
 #in file tanzimat proje mano negah dari mikone , har tanzimi ke baraye sakhtar koli proje dar nazar begirim bayad biaim inja.

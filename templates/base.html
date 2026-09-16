@@ -41,7 +41,9 @@
 							{% comment %} migim agar user man vared shode bood {% endcomment %}
 							{% if request.user.is_authenticated %}
 							{% comment %} esm user mano neshoon bede ba yseri matn ghablesh{% endcomment %}
-			  					<li><a href="#">you logged in as {{request.user.username}}</a></li> 
+			  					<li><a href="#">you logged in as {{request.user.username}}</a></li>
+								{% comment %} baraye logout kardan {% endcomment %}
+								<li><a href="{% url 'accounts:logout' %}">logout</a></li> 
 							{% else %}
 							{% comment %} dar gheyr in soorat agar login nakarde bood lonk haye marboot be login ro behesh bede {% endcomment %}
 								<li><a href="{% url 'accounts:login' %}">Login</a></li>

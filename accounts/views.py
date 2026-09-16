@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect #baraye redirect be ye safhe dige
-from django.contrib.auth import authenticate, login 
-from django.contrib.auth.forms import AuthenticationForm #baraye estefade az form haye bulit-in django
+from django.contrib.auth import authenticate, login , logout #/ login baraye login / logout baraye logout / 
+from django.contrib.auth.forms import AuthenticationForm #baraye estefade az form haye bulit-in django 
+from django.contrib.auth.decorators import login_required #baraye decorator login_required
 # Create your views here.
 
 def login_view(request):
@@ -37,9 +38,11 @@ def login_view(request):
     #key value pas dadim tooye safhe va tooye template ham ba key mesage be soorat {{message}} darj sh kardim
     #hala berim hamin kar ro tooye templte anjam bedim
 
+@login_required
 def logout_view(request):
-    # return render(request , 'accounts/logout.html')
-    pass
+    #if request.user.is_authenticated: #migim agar karbar ma login karde bood , betoone logout kone. dar gheyr in soorat redirect beshe be safhe asli
+    logout(request) #request karbar ro mizarim tooye function logout / bala ham import sh kardim.
+    return redirect('/')
 
 def signup_view(request):
     return render(request , 'accounts/signup.html')
