@@ -3,6 +3,8 @@ from blog.models import Post , Comment #table post ro inja import mikonim , tabl
 #comment haro biarim va azashoon estefade bokonim.
 from blog.forms import CommentForm #comment form haro import mikonim
 from django.contrib import messages #baraye namayesh message ha
+from django.contrib.auth.decorators import login_required #baraye decorator login_required
+
 
 #from django.shortcuts import get_object_or_404 : in chizi ke import kardim mikhaym kari konim ke vaghti ke safhe ie peida nemishe 
 #be jaye error , khataye 404 begirim :) vali khob niazi be tarif dobarash nist va chon django.shortcuts ro bala darim 
@@ -15,7 +17,7 @@ from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
  #EmptyPage : baraye inke safahat khli ro handel konim.
  #PageNotAnInteger : baraye inke agar karbar chizi joz adad ke safhe page mishe call kard in bahs handel beshe
 
-
+@login_required
 def blog_view(request , **kwargs):
     posts = Post.objects.filter(
         status=1,
