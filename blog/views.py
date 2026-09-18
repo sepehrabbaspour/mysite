@@ -1,9 +1,11 @@
-from django.shortcuts import render , get_object_or_404
+from django.shortcuts import render , get_object_or_404 , redirect
 from blog.models import Post , Comment #table post ro inja import mikonim , table comment haro ham miarim ta betoonim 
 #comment haro biarim va azashoon estefade bokonim.
 from blog.forms import CommentForm #comment form haro import mikonim
 from django.contrib import messages #baraye namayesh message ha
-from django.contrib.auth.decorators import login_required #baraye decorator login_required
+from django.urls import reverse #baraye bargashtan be ye safhe dige
+from django.http import HttpResponseRedirect #bayad ba reverse tarkib beshe
+
 
 
 #from django.shortcuts import get_object_or_404 : in chizi ke import kardim mikhaym kari konim ke vaghti ke safhe ie peida nemishe 
@@ -17,7 +19,6 @@ from django.core.paginator import Paginator , EmptyPage , PageNotAnInteger
  #EmptyPage : baraye inke safahat khli ro handel konim.
  #PageNotAnInteger : baraye inke agar karbar chizi joz adad ke safhe page mishe call kard in bahs handel beshe
 
-@login_required
 def blog_view(request , **kwargs):
     posts = Post.objects.filter(
         status=1,
@@ -76,17 +77,19 @@ def blog_single(request , pid):
 
     post.counted_views +=1
     post.save()
+    if not post.login_required or request.user.is_authenticated: # agar post.login_required false bood ya karbar login karde bood, post ro namayesh bede
+        comments = Comment.objects.filter(post=post.id , approved=True)#.order_by('-created_date')
+        #migim boro tooye table Comment , tamam object hayi ke daram ro filter kon bar asas post = post.id sh hast
+        #hala bia order kon bar asas created_date behem ina ro bargardoon. ke tooye models class meta sho tarif kardim
+        #dar nahayat bayad hamin variable comment ro be soorat key / value be contex pas bedim ke tooyhe safhe namayesh dade beshe
+        #dar edame sh migim agar approved True bood tooye data base (defult false hast) nemayesh bede tooye safhe.
 
-    comments = Comment.objects.filter(post=post.id , approved=True)#.order_by('-created_date')
-    #migim boro tooye table Comment , tamam object hayi ke daram ro filter kon bar asas post = post.id sh hast
-    #hala bia order kon bar asas created_date behem ina ro bargardoon. ke tooye models class meta sho tarif kardim
-    #dar nahayat bayad hamin variable comment ro be soorat key / value be contex pas bedim ke tooyhe safhe namayesh dade beshe
-    #dar edame sh migim agar approved True bood tooye data base (defult false hast) nemayesh bede tooye safhe.
+        form = CommentForm() #inja comment form ro migirim va mirizim tooye variable form , va pasesh midim be context baraye namayesh dar safhe
+        context = {'post':post , 'comments':comments , 'form':form}
+        return render(request , 'blog/blog-single.html' , context)
+    else:
+        return HttpResponseRedirect(reverse('accounts:login')) #dar gheyr in soorat boro be safhe login tooye app accounts (ba reverse va HttpResponseRedirect)
 
-    form = CommentForm() #inja comment form ro migirim va mirizim tooye variable form , va pasesh midim be context baraye namayesh dar safhe
-    context = {'post':post , 'comments':comments , 'form':form}
-        
-    return render(request , 'blog/blog-single.html' , context)
 
 def test(request):
     return render(request , 'test.html')

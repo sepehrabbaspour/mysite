@@ -14,7 +14,7 @@ class PostAdmin(SummernoteModelAdmin): #admin.ModelAdmin/ in model ba admin.Mode
     #fields = ('title',) #deghat kon ke in ye tuple hast va az ghavanin tuple peyravi mikone
     # yani daroon () bashe , agar tedad eleman ha zaid boodan ba (,) az ham joda shoon mikonim 
     # va agar tak eleman bood mesl inja , oon eleman ro minevisim va ye (,) baadesh mizarim. daghigha mesl inja
-    list_display = ('title' , 'author' , 'counted_views' , 'status' , 'published_date' , 'created_date')
+    list_display = ('title' , 'author' , 'counted_views' , 'status', 'login_required' , 'published_date' , 'created_date')
     list_filter = ('status', 'author') #deghat kon age yedoone ham bood be soorat tuple midim 
     #ordering = ['-created_date'] #deghat kon be soorat liste !!
     search_fields = ['title' , 'content'] #deghat kon be soorat liste !!

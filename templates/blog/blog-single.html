@@ -167,7 +167,18 @@
 
 									in kar baraye in hast ke database befahme man daram rooye che posti comment mizaram
 									-->
-									<div class="form-group form-inline">
+
+									{% if request.user.is_authenticated %} <!--agar user login karde bood
+									boro az field haye marboot ba karbari ke login karde (request.user) first_name va email sh ro begir-->
+
+										<input type="hidden" name="name" value="{{request.user.first_name}}" >
+										<input type="hidden" name="email" value="{{request.user.email}}" >
+									<!--hadaf ine agar karbar login karde bood , baraye comment gozashtan dige nakhad esm va email bede.
+									serfa subject va message ro por kone-->
+									
+									{%else%} <!--agar vared nashode bood filed haye esm va email ro behesh neshoon bede-->
+
+									<div class="form-group form-inline"> 
 									  <div class="form-group col-lg-6 col-md-12 name">
 									    <input type="text" class="form-control" name="name" placeholder="Enter Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
 									  </div>
@@ -175,6 +186,9 @@
 									    <input type="email" class="form-control" name="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
 									  </div>										
 									</div>
+
+									{% endif %} <!--inam akahr if , dar har sharayeti field haye subject va message hastan-->
+
 									<div class="form-group">
 										<input type="text" class="form-control" name="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
 									</div>

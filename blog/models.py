@@ -42,6 +42,7 @@ class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte 
     #khode django ino midoone ke many to many field mitoone null ham bashe
     counted_views = models.IntegerField(default=0) #(default=0) migim meghdar avaliesh 0 bashe
     status = models.BooleanField(default=False) #yani meghdar avalie ash false bashe
+    login_required = models.BooleanField(default=False) #ino migim baraye in ke masala ye seri az post ha baraye dide shodan niaz be login dashte bashan
     published_date = models.DateTimeField(null=True) #ino chon khodemoon gharare tarif konim va bana nist az jayi biad khali mizarim
     created_date = models.DateTimeField(auto_now_add=True) #auto_now_add=True
     #in yanoi zaman sakhte shodan field, hamin alan bokhore zaman sakhte shodanesh
