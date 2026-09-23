@@ -92,52 +92,15 @@
 							<div class="single-post row">
 								<div class="col-lg-3  col-md-3 meta-details">
 									<ul class="tags">
-										{% comment %} {% for cat in post.category.all %} boro tooye post , category , hamasho begir {% endcomment %}
-											{% comment %} <li><a href="#">{{cat.name}}</a></li> {% endcomment %}
-											{% comment %} hala ke inaro gereftim rikhtimesh tooye cat dige , hala boro name hasho biar
-											khob name haro niaz dashtim dige tooye category , va in name tooye modelasion class Category tarif shode
-											dar nahayat faght tag link a ro montaghel mikonim be bala ke baghie ham halat link begire
-											{% endcomment %}
-										{% comment %} {% endfor %} {% endcomment %}
-										
-										{% comment %} mishe ham be jaye halghe for kola oon halghe for ro nanevisim
-										va az in tavesh estefade konim
-										{% endcomment %}
-										{% comment %} {{post.category.all|join:", "}} {% endcomment %}
-										{% comment %} alabte age ino bezarim daroon link joft category ha ba ham link mishan 
-										dige joda joda nistan
-										{% endcomment %}
-
-										{% comment %} asl kar ma injoori mishe {% endcomment %}
-
 										{% for cat in post.category.all %}
 											<a href="{% url 'blog:category' cat_name=cat.name %}" class="category-link">{{cat.name}}</a> {% if not forloop.last %} , {% endif %}
-											{% comment %} dar inja az tooye post.category tamam objecgt hasho gereftim va rikhtim tooye cat {% endcomment %}
-											{% comment %} hala ye tag <a> baz mikonim ke in category ha halat link ham dashte bashand {% endcomment %}
-											{% comment %} dar nahayat mizan href ri # mizarim chera ? chon nemidoonim fela chi mikhaym bezarim toosh {% endcomment %}
-											{% comment %} ba in kar baad az click rooye href barmigardim tooye safhe asli moon {% endcomment %}
-											{% comment %} if ie ke dar edame href neveshtim be in mana ast ke agar halghe for {% endcomment %}
-											{% comment %} dar akharin doe lhod nabood! (,) ro bezar {% endcomment %}
 										{% endfor %}
-
 									</ul>
 									<div class="user-details row">
 										<p class="user-name col-lg-12 col-md-12 col-6"><a href="{% url 'blog:author' author_username=post.author.username %}">{{post.author.get_full_name}}</a> <span class="lnr lnr-user"></span></p>
-										{% comment %} agar serfa username nevisande ro bekhaym migim post.author  {% endcomment %}
-										{% comment %} esm ro be in soorat ham mishe nevesht : post.author.first_name {% endcomment %}
-										{% comment %} agar family mikhaym bayad begim : post.author.last_name {% endcomment %}
-										{% comment %} agar id author ro tooye bakhash users haye admin bekhaym migim post.author.id {% endcomment %}
-										{% comment %} agar username sh ro bekhaym bayad begim post.author.username , ke mire inam az safhe admin mikhoone {% endcomment %}
-										{% comment %} agar ham esm tarafo kamel bekhaym neshoon bedim migim post.author.get_full_name {% endcomment %}
 										<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{post.published_date|date:"d M Y"}}</a> <span class="lnr lnr-calendar-full"></span></p>
-										{% comment %} deghat kon agar tooye format dadan ba tarikh va zaman fasele vojood dashte bashe error khahim dasht {% endcomment %}
-										{% comment %} agar bekhaym ba function haye template tag ye amaliati anjam bedim {%example %} injoori bashe kar nemikone!!! {% endcomment %}
 										<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.counted_views}} Views</a> <span class="lnr lnr-eye"></span></p>
 										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">{% comments_count post.id %} Comments</a> <span class="lnr lnr-bubble"></span></p>	
-										<!--inja baraye tedad comment ha bayad query bezanim be joz in bashe kar nemikone
-										bayad oon template tagi ke neveshtim ro load konim. post id ie ke dare ro barash mifrestam ke 
-										shomaresh ro anjam bede
-										-->					
 									</div>
 								</div>
 								<div class="col-lg-9 col-md-9 ">
@@ -147,22 +110,6 @@
 									<a class="posts-title" href="{% url 'blog:single' pid=post.id %}"><h3>{{post.title}}</h3></a>
 									<p class="excert">
 										{{post.content|truncatechars:100}}
-										{% comment %} inja migim az tooye post hamoon content ro bargardoon be jaye snippets 
-										vali ba in filteri ke behem midam yani truncatechars:9
-										injoori migim 9 kalame aval content ro joda kon va namayesh bede
-										9 har az content na 9 kalame
-										dar in soorat oon ... akharash ke masala mikhastim begim in mat edame dare
-										khod be khod handel mishe 
-										har tedad harfi ke bekhaym behesh midim hatma nabayd 9 ta bashe
-										nokte jaleb injast ke agar masala bedim 100 ta va oon content tamoom beshe dige ... nadarim jelosh
-										pas template tag ha kheili mitoonam kar maro rahat konand
-										hala dige niazi ham be function snippets ie ke tooye models app blog tarif kardim nadarim
-
-										ye chiz kheyli jaleb truncatechars tedad horoof kalamat ro dar nazar migire (masala 100 harf)
-										amma truncatewords tedad kalamt ro dar bar migirad (masala 100 kalame)
-
-										har 2 ina ... ro handel mikonand
-										{% endcomment %}
 									</p>
 									<a href="{% url 'blog:single' pid=post.id %}" class="primary-btn">View More</a>
 								</div>
@@ -203,56 +150,15 @@
 							<div class="widget-wrap">
 
 								{% include 'blog/blog-search.html' %}
-								{% comment %} ghesmat blog search {% endcomment %}
 								
 								{% include 'blog/blog-writer.html' %}
 
-								{% comment %} dar vaghe in ghesmat ke hazf shod daroon ye file dige ie ke tooye pooshe
-								templates/blog tooye file blog-writer.html hast ke be oonja montaghel shode khob
-								alan ma inja mesl halati bood ke tooye base migoftim ye block content darim 
-								va baad tooye safhe asli extend mikardim az oon safhe base.html
-								
-								in ja be in sorat migim ke boro va mohtaviat felan safhe ro dar bar begir , kodoom safhe ? blog-writer
-								faghat faramoosh nakon ke hatma hatma bayad tooye safhe blog-home.html load static anjam bedim
-								dar gheyr in soorat kar nemikone
-
-								{% include "blog/blog-writer.html" %} 
-								dar inja dar vaghe migim ke boro az tooye pooshe template ke barat tarif kardam tooye setting
-								(lazem nist inja dige benevisimesh template ro tooye address)
-								boro tooye pooshe blog va boro soragh blog-writer.html va mahtaviatesh ro dar bar begir,
-								va biar inja ghararesh bede.
-
-								faghat load static nabayad faramoosh beshe , farghi baraye include ya block nadare 
-								agar darim az template tag haye marboot be static estefade mikonim bayad load static anjam bedim hatma
-								
-								hala ke in karo anjam dadim har ja va be har tedad ke bekhaym mitoonam azash estefade konim.
-								hata tooye blog-single ke alan estefade kardim.
-
-								ye khoobi dige ham ke dare age faghat tooye file blog-writer.html ye chizi ro taghir bedam 
-								hameja taghir mikone va lazem nist hey taki taki hame ja taghir sh bedam.
-								masala mikham esm ro avaz bokonam va esm khodam ro bezaram. faghat kafie tooye file blog-writer
-								esm ro taghir bedam va tamam hame ja taghir mikone , tooye har 2 ta safhe  :))))
-								agar lazem bashe ye elemani tooye safahat be tedad tekrar beshe in rah besiar khoob va estandardi hast.
-
-								alan masala berim baraye bakhsh haye dige ham in karo anjam bedim. masala baraye tablighat(ads)
-
-
-
-								{% endcomment %}
-
 								{% include 'blog/blog-ads.html' %}
-								{% comment %} inam baraye tablighat blog-home :)))) {% endcomment %}
-
-								{% comment %} {% include 'blog/blog-post-categories.html' %} {% endcomment %}
-								{% comment %} inja baraye category ha  {% endcomment %}
 
 								{% postcategories %}
 
 								{% include 'blog/blog-newsletter.html' %}
-								{% comment %} baraye news letter ha {% endcomment %}
-
-								{% comment %} {% include 'blog/blog-tags.html' %}	 {% endcomment %}
-								{% comment %} ghesmat tag haye blog {% endcomment %}	
+	
 							</div>
 						</div>
 					</div>

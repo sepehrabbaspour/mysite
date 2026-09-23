@@ -19,59 +19,40 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 INSTALLED_APPS = [
-    'multi_captcha_admin', #baraye multy captcha admin , hatma ghabl az 'django.contrib.admin', ezafe beshe
-    #ba dastoor pip install django-multi-captcha-admin nasb mishe , va paien tar tanzimatesh ro anjam midim va miad tooye safhe admin
-    #niaz be hich kar khas dige ie nadare
+    'multi_captcha_admin',
     'django.contrib.admin',
-    'django.contrib.auth', #baraye authentication / az ghabl vojood dare
+    'django.contrib.auth', 
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.humanize', #in ye majule hast ke baraye har che rahat tar kardan khandan zaman azash estefade mishe.
-    'django_extensions', #in mal django_extensions hast ke baraye estefade hatma bayad tooye installed apps ezafe beshe.
-    'django.contrib.sites', #in baraye majule site hastesh
-    'django.contrib.sitemaps', #in baraye sitemap hastesh va baad az site gharar migire
-    'robots', #baraye robots ha , albate ghablesh bayad ba pip install django-robots tooye terminal nasbesh konim
+    'django.contrib.humanize', 
+    'django_extensions', 
+    'django.contrib.sites', 
+    'django.contrib.sitemaps', 
+    'robots',
     'django.contrib.staticfiles',
-    'debug_toolbar', #debug_toolbar hatma bayad baad az django.contrib.staticfiles biad be khater ye seri masael az pish taien shode
-    #hala hatma khat baadi ham na vali baadesh bayad biad
-    'taggit', #baraye taggit
-    'django_summernote', #baraye summernotes / nasb az pip install django_summernote
-    'captcha', #baraye captcha , bayad nasb sh konim ba estefade az pip install django-simple-captcha
+    'debug_toolbar',
+    'taggit',
+    'django_summernote',
+    'captcha',
     'website.apps.WebsiteConfig',
-    'blog', #be in soorat ham mishe app tarif kard tooye setting
-    #vaghti ye app jadid sakhte mishe bayad ebteda esm app (website) , 
-    #dar edame eshare konim be pooshe apps ke tooye tamam application ha vojood dare.
-    #dar nahayat ye class tooye app neveshte shode ba nam WebsiteConfig ke dar edame app varedesh mikonim
-    #in sakhtar baraye hame app ha be yhe soorat hast vali esm app ha fargh mikone.
-    'accounts', #app accounts ke sakhtim baraye modiriat user ha 
+    'blog', 
+    'accounts',
     
 
 ]
 
-#deghat kon tooye ezafe kardan app mesl line 40 , bayad esm app , pooshe app va dar nahat esmsh
-#ke alan WebsiteComfig hast ke ye class hastg tooye file apps pooshe website(app moon)
-
-#mishe ham faghat esm khode app ro nevesht yani injoori kw faghat benevisim website
-#baste be kari ke mikhaym bokonim motafavete (har 2 estandard hast)
-#tozih midim har 2 ro , entekhabesh bastegi be khodmoon dare vali karbord ha fargh dare.
-
 # robots 
-ROBOTS_USE_HOST = True #in baraye ine ke agar false bood esm host to nayare tooye robots.txt ke search mikonim 
-#dar vaghe migim robots hagh nadare az host name tooye safhe namayesh sh estefade kone.
-#agar ino nanevisim namayesh dade mishe khod be khod (pish farz true hast hata age nanevisim sh)
+ROBOTS_USE_HOST = True 
 
 ROBOTS_USE_SITEMAP = True
-#inja behesh migim agar false bood sitemap haro ham neshoon nadi tooye safhe namayesh robots.
-#agar ino nanevisim namayesh dade mishe khod be khod (pish farz true hast hata age nanevisim sh)
 
 #summernotes configs
-
-SUMMERNOTE_THEME = 'bs4' #inja migim summernote mitoone az bootstrap 4 estefade kone 
+SUMMERNOTE_THEME = 'bs4'
 
 SUMMERNOTE_CONFIG = {
     # Using SummernoteWidget - iframe mode, default
-    'iframe': True, #iframe mitoone bashe ya nabashe
+    'iframe': True,
 
     # You can put custom Summernote settings
     'summernote': {
@@ -83,8 +64,6 @@ SUMMERNOTE_CONFIG = {
         'height': '480',
 
         # Toolbar customization
-        # https://summernote.org/deep-dive/#custom-toolbar-popover / tooye tool bar summer note che abzar hayi bashe.
-        #faghat tanzimati ke lazem darim ro mizarim bashe
         'toolbar': [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
@@ -98,16 +77,10 @@ SUMMERNOTE_CONFIG = {
     }
 }
 
-#inaro az link https://github.com/lqez/django-summernote avordim va jaygozin kardim va yekami taghirat dadim
-
 # captcha admin setting
-
-MULTI_CAPTCHA_ADMIN = { #inja dar vaghe migim ke MULTI_CAPTCHA_ADMIN ma az kodoom model captcha estefade bokone.
-    #ke anvae simple-captcha , recaptcha , recaptcha2 ro dare ke ma az simple-captcha estefade mikonim va be in soorat minevisim ke:
+MULTI_CAPTCHA_ADMIN = {
     'engine': 'simple-captcha',
 } 
-
-#in va tarighe nab majule recaptcha baraye safhe admin ro az link https://github.com/a-roomana/django-multi-captcha-admin avordim 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,7 +90,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware", #inam baraye debugger bayad tooye midelware ezafe konim
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -174,12 +147,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/' #in baraye pooshe static tarif shode az ghabl
+STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
-
-
-#baad az in kar mesl template ha ye pooshe tooye directory asli (mysite) proje dorost mikonam 
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -191,72 +160,5 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-
-#in NTERNAL_IPS ro khodemoon ezafe kardim behesh ke baraye django debugger hast , karesh ine ke moshakhas mikone kia dastresi dashte bashan
-#ke in safhe debugger ro bebinan bayad ip ash ro moshakhas konim. karbordesh oonjast ke zamani ke proje ro rooye server deploy konim
-#be in bakhs rojoo mikone va mige in ip va serveri ke alan roosh hastam va proje dare az tarigh sh run mishe ,
-#ip dakheli hast ya az jaye dige dare tamin mishe (local hast ya az jaye dige dare miad)
-# in agar nabashe toolbar debugger asa baramoon baz nemishe
-
 # login URL for login_required
 LOGIN_URL = 'accounts:login' 
-
-#in file tanzimat proje mano negah dari mikone , har tanzimi ke baraye sakhtar koli proje dar nazar begirim bayad biaim inja.
-#amma havi chie in file ? in file ye seri addres haro baramoon negah midare dar daraje aval , addres pooshe proje mano 
-#negah midare , base dir dar (line 16) vaghe ye varable hast ke tooye bishtar jahaye proje dare estefade mishe. chera ? 
-#age bana bashe pooshe proje ro har bar dasti bakhaym set konim tooye addres khob kheili kar sakhtie 
-#asz in jahat ye base dir (base directory) barash dar nazar gerefte shode ke masala c:\...\...\ ta oonjayi ke be file berese.
-
-#secret key (line 23) : dar vaghe kelidi hast ke etelaat bahash ramz mishe tooye amalkard jango. jelo tar miresim behesh 
-
-#debug (line 26) : vazeiyati ke proje man dare roosh ejra mishe , vaghti debug proje faal bashe manzoor ine ke oon proje ie ke
-#oon proje ie ke darim run mikonim ghabeliat tosee dare , masala ye seri payam haye matni miyad ke irad code hat kojast 
-#ya masala chizi ro faramoosh kardam behem bege, mesl vaghti ke ye exception raise mishe montaha tooye safhe ina ro mibinim 
-#debug false beshe dige in payam nemiad. ye seri etelaat bayad dasti barash set beshe ,.... ke behesh miresim.
-
-#alowed hosts (line 28) : dar vaghe mal zamani hast ke ye seri damane haro darim va zamani ke be samt deployment mirim 
-#va mikhaym code haro rooye serveri jayi gharar bedim , niaz be ye damane hast ke in damane ro be server ya host ie ke 
-#kharidim motasel konim va ejaze dastresi az tarigh in damane ro barash ijad konim. behesh miresim....
-
-#installed apps (line 33) : marboot be barname ha ya mudole hayi hast ke amala tey masir be proje jango moon ezafe mikonim
-#ye seri haro nasb mikonim va estefade mikonim ye seri hasho khodemoon misazim va estefade mikonim.
-#dar har soorat ta zamani ke in app ha vaseye proje man tarif nashe ejaze dastresi beheshoon nadaram.
-#deghat kon age appi tarif kardim hatma bayad tooye bakhsh installed apps tarif beshe
-
-#middleware (line 42) : zamani etefagh miofte ke ma ye seri darkhast be samt server dare miad.
-#in darkhast ha ghabl az inke vared bakhsh pardazesh url va kheili chizaye dige beshe ghablesh az middleware rad mishe.
-#ye mard miani hast amala ke baraye ma tasmim giri mikone in be kodoom bakhsh ha bayad bere 
-
-#root urlconf (line 52) : mige ke url haye asli az kodoom file dare sar cheshme migire ke inja dare mige khodesh ke :
-#'mysite.url' ke mige tooye pooshe myste , tooye file urls.py , (tooye jango injoori addres bazi jaha midim ke kar mikonim bishtar)
-#amalkard in model addres dadan taghriba mesl kari hast ke ba majule ha anjam midadim vali inja yekami sakhtar avaz shode
-
-#template (line54) : safahat html , css , js ya har chizi ke neveshtim ro mikhaym dakhel oon safhe nemayesh bedim ro baramoon
-#control mikone vali dar vaghe faghat safaht ro control mikone , static haro nemitoone control bokone.
-#vali khob chon ye seri amalkard haro daroon in safahat gharar midim va ye seri chizaro import mikonim toosh va estefade mikonim , 
-#be hamrah oonam mishe ye seri dastresi ha az tarigh eleman ie ke inja darim control kard masala : 
-#yeki az chizayi ke kheyli bahash dargir mishim bahs directory tamplate (DIRS) hayi hastesh ke rajeb shoon sohbat mikonim.
-
-#wgsi_application (line 69) : dar vaghe  mige ke in pol ertebati man ba serveri ke gharare bahashe , file wgsi man tooye 
-#class application hastesh ke mikhad amalkardesh ro dast begire. in momkene baazi ha mostaghima taghiresh bedan 
-#manzoor az application :  WSGI_APPLICATION = 'mysite.wsgi.application' hast.
-
-#database (line 75) : goftim ke data base ie ke jango azash estefade mikone sqlite 3 hastesh . ba sqlite 3 bayad kar karde bashim.
-
-#auth_password_validators (line 86): in baraqye zamani hast ke taraf masala mikhad password hayi ro baraye contex sh set bokone ke ,
-#oonja vared amal mishe va masala mige password ke entekhab mikoni nabayad tedad password az ye tedadi kamtar bashe (line 91)
-#ya masala nabayad ye password , common (sade va ghabel hads mesl 12345678) bashe (line 94)
-
-#language_code (line 105) : bahs sakhtar asli khode django hastesh ke ba che zabooni dare run mishe
-
-#time_zone (line 107) : moshakhas mikone ke baze zamanish dare az koja miad . 
-
-# USE_I18N = True , USE_TZ = True (line 109 , 111) : rajeb shoon bishtar sohbat mishe vali bishtar marboot be hoze taghir zaban , 
-#tran mishe ke agar bana bashe tooye site eleman haye multi language dashte bashim ke masala 2 zabane ya chand zabane amal konand , 
-#az in bakhsh ha ziad estefade mishe vali khob asa azash estefade nemikonim vali bedoon be che dardi mikhore.
-
-#static_url (line 117) : dar vaghe file haye css , js va chiz hayi ke gharare tooye safhat load beshan ro az inja miarim.
-#rajeb media ha ham sohbat mishe 
-
-#default_auto_field (line 122) : kari khasi nadarim bahash fela va in ke ye seri tanzimat marboot be bakhsh modelasion hast ke 
-#dare handel mikone ke rajeb shoon sohbat mishe be moroor 

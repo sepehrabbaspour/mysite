@@ -69,16 +69,11 @@
 										<textarea class="common-textarea form-control" name="message" placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required=""></textarea>				
 									</div>
 									<div class="col-lg-12">
-										<div class="pb-3"> <!--inja khodemoon bordimesh tooye div gozashtim ke ye fasele ijad kone-->
-										{{form.captcha}} <!--baraye majule captcha-->
-										{% comment %} inja migim az tooye formi ke daram tooye safhe midam , captcha ro bezar inja {% endcomment %}
+										<div class="pb-3">
+										{{form.captcha}}
 										</div>
 										<div class="alert-msg" style="text-align: left;"></div>
 										<button type="submit" class="genric-btn primary" style="float: right;">Send Message</button>
-										{% comment %} in field hayi ke inja darim faghat kafie name hashoon motabeghat dashte bashe. {% endcomment %}
-										{% comment %} type="submit" in hatma bayad ezafe beshe , age nabashe dokme moon kar nemikone. {% endcomment %}
-										{% comment %} tooye action form faghat url dynamic moon ro midim be in soorat : action="{%url 'website:contact'%}" {% endcomment %}
-										{% comment %} alan ma url ro vasl kardim be app website , url ie ke name sh contact hast {% endcomment %}
 									</div>
 								</div>
 							</form>	
@@ -106,11 +101,6 @@
 							{% endif %}
 							</div>
 						{% endif %}
-						{% comment %} ino az google search kardam django forms error in template va az in link peydash kardam
-						Show messages and errors in Django templates. Useful to ... , mal git hub hastesh
-						injoori kheyli rahat mishe hame irad haye form ro handle kard , ke agar tooye form etefaghi oftad betoonam
-						be karbaram befahmoonam ke oon irad az noe chie 
-						{% endcomment %}
 					</div>
 				</div>	
 			</section>

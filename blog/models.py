@@ -1,167 +1,39 @@
 from django.db import models
-from django.contrib.auth.models import User #mige modelasion user django dare az django.contrib.auth.models miad
-from django.urls import reverse #import kardan reverse ha
+from django.contrib.auth.models import User
+from django.urls import reverse
 from taggit.managers import TaggableManager
+
 # Create your models here.
 
 class Category(models.Model):
-    name = models.CharField(max_length=255) #goftim ke tooye ctegory ye seri esma darim dige , inja ham attribute name midim.
+    name = models.CharField(max_length=255)
     def __str__(self):
         return self.name
 
-class Post(models.Model): #table esm class be onvan esm table dar nazar gerefte mishe 
+class Post(models.Model):
     image = models.ImageField(upload_to = 'blog/' , default='blog/defult.jpg')
     author = models.ForeignKey(User,on_delete=models.SET_NULL , null=True)
-    #inja migim author man gharare bere br modelasion marboot be user negah kone
-    #va yek nafar ke man az tooye oon modelasion entekhab mikonam ro baraye man be onvan nevisande post dar nazar begire
-    #tooye arg aval behesh migim az che table ie dare miad foreign key man? marboot be kodoom table mishe?
-    #az tabale User ke importesh kardim va be onvan arg aval minevisimesh
-
-    #hala bakhsh dovom arg voroodi ma marboot be in mishe ke
-    #dar vaghe mikhad maro mojab kone ke agar gharar bashe az modelasioni estefade kone ke foreign key hast 
-    #bayad hatma behesh bigim ke zamani ke man masla in field ro delete kardam (post ro delete kardam) , bakhsh marboort be usersh
-    #ya har chizi ke hastesh, masala migim ye post montasher shode ba folan user , baad tooye table user , oon useri ke post montasher 
-    #karde ro hazf mikonam. hala inja mikhaym begim vaghti in user hazf shod , jaygah in user ro chikar konam ? 
-    #post haye marboot be oon user ro ham oak konam ? ya faghat jaygah user ro khali bezaram ? 
-    #in dige bastagi be khodam dare ke mikahm chikar bikonam ba post haye montasher shode.
-    #agar be onvan arg dovom begim on_delete=models.SET_NULL , khalish mikone jaye author ro
-    #deghat kon agar bekhaym set_null anjam bedim rooye author moon , bayad behesh begim ke jaygah to mitoone khali ham bashe
-    #yani be in soorat on_delete=models.SET_NULL , null=True , ina bayad reaayat beshan.
-    #dar nahayat bayad roosh makemigrations , migrate anjam beshe.
-
-    #agar ham begim on_delete=models.CASCADE ke hamzaman ba pak shodan user , post haye marboot be oon ham pak beshan. 
-    #ke in be khodem rabt dare ke policy va ghavanin ro chetor bechinim
-     
-    
-
-    title = models.CharField(max_length=255) #feild #hamoon attribute ha be onvan field mahsoob mishan
-    content = models.TextField() #field 
-    tags = TaggableManager() #faghat kafie TaggableManager inja biarim khodesh baghie ro handle mikone :) faghat migrate yadet nare
-    #tooye safhe admin ham khodesh namayesh dade mishe niaz be kari nist
-    category = models.ManyToManyField(Category) #in mitoone null bashe vali lazem nist behesh begim , 
-    #khode django ino midoone ke many to many field mitoone null ham bashe
-    counted_views = models.IntegerField(default=0) #(default=0) migim meghdar avaliesh 0 bashe
-    status = models.BooleanField(default=False) #yani meghdar avalie ash false bashe
-    login_required = models.BooleanField(default=False) #ino migim baraye in ke masala ye seri az post ha baraye dide shodan niaz be login dashte bashan
-    published_date = models.DateTimeField(null=True) #ino chon khodemoon gharare tarif konim va bana nist az jayi biad khali mizarim
-    created_date = models.DateTimeField(auto_now_add=True) #auto_now_add=True
-    #in yanoi zaman sakhte shodan field, hamin alan bokhore zaman sakhte shodanesh
-    updated_date = models.DateTimeField(auto_now=True) #in yani zamani ke field dare update mishe zamansh barabar ba hamoon zamani 
-    #ke dare update mishe
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    tags = TaggableManager()
+    category = models.ManyToManyField(Category)
+    counted_views = models.IntegerField(default=0)
+    status = models.BooleanField(default=False)
+    login_required = models.BooleanField(default=False)
+    published_date = models.DateTimeField(null=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created_date']
-        # verbose_name = 'پست'
-        # verbose_name_plural = 'پست ها'
         def __str__(self):
             return self.title
 
     def get_absolute_url(self):
         return reverse('blog:single',kwargs={'pid':self.id})
 
-    #ghabl az har chizi yadet bashe ke from django.urls import reverse bala import koni 
-    #in modelasion marboot be app blog hast pas minevisimesh.
-    #hala be che safahati mikhaym eshare konim ? safahat marboot be single
-    #hala chejoori eleman ha ya arguman hayi ke mikham behesh bedam ro barash taien konim ? mishe barash kwargs nevesht.
-    #ye seri key value behesh bedim.
-    #hala key value ha banast chi bashan ? tooye urls haye marboot be app blog , tooye ghesmat blog_single goftim ke ye
-    #arguman pid gharare barat biad doroste ? pas inja ham migim ye pid barat miad ke barabar chi bayad bashe ? 
-    #oon posti ke darim id hash doroste ? pas migim self.id
-    #hala hamin amalkard ro mishe tooye sitemap ham dasht tooye def location.
-
-    #hala ye nokte in get_absolute_url be ye seri chiza tooye sakhtar django vasl hastesh. be chia  ? 
-    #yekish in ghabeliat ke zamani ke ma yeki az post hamoon ro tooye bakhsh marboot be tanzimat oon post hastesh negah mikonim
-    #mishe oon bala ye dokme ezafe kard ke mano mostaghima vasl kone be oon post ke betoonam bebinamesh
-    #ke be vasete get_absolute_url ie ke inja neveshtim in emkan moyasar mishe. 
-    #ye dokme view on site baramoon ezafe mishe. va az tooye safhe admin maro vasl mikone ke betoonim oon safhe ro bebinim.
-    #pishnahad mishe joftesho negah darim , ham function location in kar sitemap ro anjam mide baramoon va ham
-    # #function get_absolute_url , vali olaviat ba def location tooye sitemaps.py hast 
-        
-
-#tooye char field hatma bayad benevisim ke chand karacter mikhaynm vared konim hadaksar. estandard khasi ham nadare.
-
-#deghat kon agar bana shod joori kar konim ke bada maghadir ro ezafe konim mesl alan , 
-#maghadir hatma bayad barash meghdar null ya defult barash taien konim mesl alan
-
-#amma age avalin bar hast ke darim makemigratin anjam midim hich iradi nakhahad gereft
-
     def __str__(self): #
-        return "{} - {}".format(self.title , self.id) #inja dar vaghe darim migim ye function ezafe mikonam ke ghavaed classam ro over write konam 
-#inja object self ma dare az eleman haye marboot be modelasion miad doroste? 
-#hala migim be jaye inke biai va object haro tooye modelasion neshoom bedi bia va title haro neshon bede yani : 
-#return self.title. ba function __str__ ham ke migim bejaye object ha bia va title ha sho be man bargardoon.
-#dar vaghe title har posti ie ke marboot be khodeshe. faghat deghat kon ke tooye class bayad bashe in function va dar asl ye method hast
-#alan asami ke tooye orm mibinim asami object ha va id ha ke ghabl az in method midim nist va dare title hasho neshoon mide behemoon.
-#hala masala man age biam bagem self.content , eleman content haro namayesh mide 
-#hala agar bekhaym kenaresh shomare id haro ham namayesh bedim mitoonim az formated string estefade konim ke be in soorat haske ke:
-#return "{} - {}".format(self.title , self.id). migim ham title haro behem namayesh bede va ham id haro  
-
-
-
-#class meta : koja tarif mishe ? bayad jayi ke class ma baraye modelmoon tarif shode , daroonesh ye classi tarif koni be esm meta
-#hala tamam attribute haye dige ie ke darim dakhel meta gharar migirand.
-# ye seri eleman haro hatma lazem nist az tarigh admin anjam bedim. vaghti darim attribute hayi ke 
-#marboot be namayesh tooye safhe admin hastand taghir midim , zamani ke mikhaym query bezanim va dade haro begirim oonja taghiri nakardan
-# class meta be ma in dastresi ro mide ke bekhaym in filter va kheyli chizayi ke darim anjam midim ro biaim va be soorat generali
-#rooye model moon dashte bashim
-#pas in class behemoon ye dastresi belghove ie mide ke biaim va ye seri taghirat baraye tamam model dashte basham ke faghat 
-#tooye zaman namayesh oona dashte basham.
-
-#app_label : agar ma modeli ro darim ijad mikonim ke daroon ye app digast vali marboot be ye app digast az in meta estefade mikonim
-#ke tamayoz beinesh ijad konim. masala do app darim ke ye class dakhel model aval darim ke mikhaym begim in class tavasot ye app 
-#dige dare modiriat va kontrol mishe va marboot be in app nist ke ba estefade az app label mitoonim in karo anjam bedim.
-
-
-#db_table : oon esm table ie ke darim vase mode moon ro mitoonim tagir bedim moghe namayesh va kheili kar haye dige
-#ke jahayi ke mikhaym query bezanim ham in esm table mitoone motafavet bashe.
-
-#ordering : yadete sakhtimesh tooye admin app blog?
-# ke bar asas tarikh morab mikard field haro ? ma mitoonim ino be soorat general benevisimesh.
-#dar vaghe oon ordering ke tooye admin neveshte boodim serfa tooye safhe admin behem namayesh midad, na zamani ke 
-#query mikham bezanam va dade hamo mikham begiram. vali inja be soorat koli dare emal mishe.
-#hata zamani ke darim data haro query mizanim va select mizanam ke daryaft konam az data base , in dare emal mishe.
-#farghesh injoorie.
-#alan in halat be soorat general hast va dige faghat marboot be admin nist :    
-# class Meta:
-    #ordering = ['-created_date'] ke khob injoori kheyli behtare.
-#alan deghat kon ke ordering ro tooye admin.py comment sh kardim.
-#order faghat bar asas zaman nist. masala mitoonim begim che zamani montasher shode va ki montasher karde ke be in soorate:
-
-#verbose_name : tooye safhe admin oon bala hasta ke neveshte Select post to change , in kalame post ro mishe avazesh kard.
-#be har chizi ke delemoon mikhad. be in soorat ke verbose_name = 'پست' hala in taghir tooye Blog adminastrator ham etefagh miofte
-#va minevise پستs :)))) ino be in soorat mishe halesh kard ke : verbose_name_plural = 'پست ها'
-#dar vaghe migam oonja hayi ke esm jam gharare bashe benevisim پست ها :))))
-#hala chera az in estefade mikonim ? gahi niaz mishe ma asami ro bar asas zaban haye motafaveti avaz konim vali nemikhaym 
-#asami marboot be modelasion ro taghir bedim. yani nemikham class poost ro biam ye chiz dige bezaram va taghir bedam
-#vali mikham moghe namayesh az ye chiz dige estefade konam. inja in ravesh be kar miad.
-#ke albate inja fela verbose_name , verbose_name_plural be karemoon nemiad va commentesh mikonam
-
-
-
-#khob baraye category ha goftim ke lazeme ye table jadid ijad konim . esmesh bashe category ,
-#va daroonesh ye seri asami gharare injad konim ke misazimesh bala , hala chera bala chon bayad dar edame azash estefade konim
-#va dastani ke dare ine ke django mesl python khat be khat ejra mishe , pas aval misazim va baad ejrash mikonim.
-
-#category = models.ManyToManyField(Category) : dar in line be in soorat az category estefade mikonim.
-
-#khob tooye modelasion faghat bayad ba bahs haye marboot be modelasin kar konim ? na kar haye dige ham mishe kard.
-#masala barye kholase kardan matn ha biaim va ye function trif konim be nam snippets ,
-#hala vaghti in function ro farakhooni mikonam mikham mikham ye reshte behem bargarde ke be in soorat minevisimesh
-#faghat deghat kon in daghigha bayad zir class meta neveshte beshe na ye indent dakhel tar!!!!!
-#dar gheyr in soorat kar nemikone
-#hala ma ino tooye template az for post ie ke sakhtim oonja migim post.snippets
-#vali alan moshkeli ke hast ine ke baraye tamam post ha in ye chiz sabete , chetor motagheyarsh konam ? yani vabesyte be oon elemani 
-#bashe ke dare call mishe 
-#alan ma inja ye elemani be esm content tooye object moon darim pas migim 
-#alan inja bayad begim self.content ke mohtaviat content be ma bargarde va baad berim rooye baghie ash kar konim.
-#hala dige lazem nist rooye khode content kari anjam bedim ? chera chon ye function mojaza az content sakhtam 
-#(dar vaghe az attribute content sakhtam) ke alan be ma in ghodrat ro mide ke rooye in har kari delam bekhad anjam bedam
-#ke masala be in halat migim ta 100 charakter aval sho behem bede be in soorat
-
-    # def snippets(self):
-    #     return self.content[0:100] +  '...' #in (...) ye chiz tazeini hast ke masala mikhaym begim in matlab edame dar hast
-
-#hala in karo ba template tag ha ham mishe anjam dad khob : be in soorat ke tooye blog-home migim 
+        return "{} - {}".format(self.title , self.id)
 
 class Comment(models.Model): #baraye system comment gozari
     post = models.ForeignKey(Post , on_delete=models.CASCADE)
@@ -173,22 +45,10 @@ class Comment(models.Model): #baraye system comment gozari
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
-        #yadet nare baraye inja aval makemigrations , baad migrate
-        
-        #ye chizi : bayad begim ke comment ha vabaste be post ha hastesh , nadashte bashe ino nemifahme 
-        #pas be in soorat migim ke posti ke to dari behesh vasl mishi az foreign key ie miad ke marboot be class Post hast va 
-        #zamani ke in post az bein mire mikhaym tamam comment hash ro pak bokone.
-        #dar vaghe migim on_delete = models.CASCADE va kole code ham be in soorate
-        #post = models.ForeignKey(Post , on_delete=models.CASCADE).
-
     class Meta:
-        ordering = ['-created_date'] #hamoon class meta ke hamishe mineveshtim
-        #hala hata mishe .orderby ro tooye views blog hazf kard va ino dasht
-        #in bar hasb zamane hamoon booda ke migoftim orderby kon bar asas created_date
-        #in comment haro bar asas zaman montasher shodaneshoon miare :)
+        ordering = ['-created_date']
 
     def __str__(self):
-        return self.name #in age nabashe tooye bakhsh comment ha mizane comment object
-    #behesh begim return self.name name ie ke taraf bahash comment gozashte ro namayesh mide bejaye comment object
+        return self.name
 
     

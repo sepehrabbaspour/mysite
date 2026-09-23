@@ -144,39 +144,13 @@
 							<div class="comment-form">
 								<h4>Leave a Comment</h4>
 								<form method="post" action="{% url "blog:single" pid=post.id %}">
-									{% csrf_token %} <!--csrf token ro tooye form ezafe mikonim-->
-									<!--migim method to barabar post va action at bayad marboot be safhe blog single bashe
-									bar asas post id moon yani pid=post.id , injoori be oon safhe post moon tooye blog vasl mishe
-									-->
-									{% comment %} {{form.as_p}} <!--migim boro form ie ke sakhtam ro be soorat paragraf bandi shode biar tooye safhe--> {% endcomment %}
-									
+									{% csrf_token %}
 									<input type="hidden" name="post" value="{{post.id}}" >
-									<!--be in soporat kar mikone ke name ro barabar post mizarim chon tooye modelasion ham hamin bood
-									value ro barabar ba name post ha mizarim , albate inja id va jelosh esm field haro neveshte
-									bood tabdilesh kardim be name
-									hala har bar in safhe ro refresh konim name oon post 
-									mire mishine tooye input, by defult value sh id post mishe.
-									az forign key ash miad.
-
-									dalil vojood input post ine ke ma bayad be data base begim baraye che posti darim comment
-									haro daryaft mikonim. montaha ba in ravesh niaz nist dasti in maghadir ro vared konim.
-									be soorat automatic shomare post ha jaygozim mishe va hidden ham hast dige 
-									kar bar nemibine
-									
-									hala vaghti type ro hidden bezarim karbar ma dige oon input ro nemibine vali amaliat anjam mishe
-
-									in kar baraye in hast ke database befahme man daram rooye che posti comment mizaram
-									-->
-
-									{% if request.user.is_authenticated %} <!--agar user login karde bood
-									boro az field haye marboot ba karbari ke login karde (request.user) first_name va email sh ro begir-->
-
+									{% if request.user.is_authenticated %}
 										<input type="hidden" name="name" value="{{request.user.first_name}}" >
 										<input type="hidden" name="email" value="{{request.user.email}}" >
-									<!--hadaf ine agar karbar login karde bood , baraye comment gozashtan dige nakhad esm va email bede.
-									serfa subject va message ro por kone-->
 									
-									{%else%} <!--agar vared nashode bood filed haye esm va email ro behesh neshoon bede-->
+									{%else%}
 
 									<div class="form-group form-inline"> 
 									  <div class="form-group col-lg-6 col-md-12 name">
@@ -187,7 +161,7 @@
 									  </div>										
 									</div>
 
-									{% endif %} <!--inam akahr if , dar har sharayeti field haye subject va message hastan-->
+									{% endif %}
 
 									<div class="form-group">
 										<input type="text" class="form-control" name="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
@@ -196,10 +170,6 @@
 										<textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
 									</div>
 										<button type="submit" class="primary-btn text-uppercase">Post Comment</button>	
-									<!--in ro ham az tag <a> tabdil mikonim be button ba type submit-->
-									<!--yadet nare baraye in ke betoonim az form template asli moon estefade konim bayad id hash 
-									ba oon chizi ke tooye modelasion tarif kardim yeki bashe ta kar kone
-									-->
 								</form>
 								<br>
 								{% if messages %}
@@ -225,8 +195,6 @@
 							{% endif %}
 							</div>
 						{% endif %}
-
-						{% comment %} inam baraye peygham movafaghiat amiz boodan va error ha {% endcomment %}
 							</div>
 								
 								
@@ -235,33 +203,18 @@
 							<div class="widget-wrap">
 
 								{% include 'blog/blog-search.html' %}
-								{% comment %} ghesmat blog search {% endcomment %}
 
 								{% include 'blog/blog-writer.html' %}
-								{% comment %} nevisande blog {% endcomment %}
-
-								{% comment %} {% include 'blog/blog-popular-posts.html' %} {% endcomment %}
-								{% comment %} baraye popular posts {% endcomment %}
 
 								{% latestposts %}
 
-								{% comment %} chera in karo kardim ? khob ghabla mohtaviat popular posts 
-								va har chizi ke inja bood ro bordim tooye ye file joda va goftim in mavared ro dar bar begir ba include
-								hala migim chi ? darim esm oon function ie ro seda mizanim ke ke tooye blog_tags neveshtimesh
-								baraye akharin post hamoon. daghigha mesl kari ke tooye test.html anjam dadim
-								{% endcomment %}
-
 								{% include 'blog/blog-ads.html' %}
-								{% comment %} inam az tablighat blog-single :))))) {% endcomment %}
 
 								{% include 'blog/blog-post-categories.html' %}
-								{% comment %} baraye category ha {% endcomment %}
 
 								{% include 'blog/blog-newsletter.html' %}
-								{% comment %} baraye news letter ha {% endcomment %}
 
 								{% include 'blog/blog-tags.html' %}	
-								{% comment %} ghesmat tag haye blog {% endcomment %}					
 							</div>
 						</div>
 					</div>

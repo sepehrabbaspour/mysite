@@ -20,12 +20,9 @@
 
   <body class="text-center">
     <form class="form-signin" method="post" action="{% url "accounts:login" %}">
-        {% csrf_token %} <!--baraye ersal amn etelaat (nabashe error darim)-->
-        {% comment %} tooye method migim in get hast ya post , tooye action migim be koja gharare ersal beshe ke ba {% url %} minevisimesh {% endcomment %}
-        {% comment %} tooye url sh ham migim boro tooye usr haye accounts (behesh esm dadim) va befrest be function login (behesh esm dadim) {% endcomment %}
+        {% csrf_token %}
       <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      {% comment %} {{form.as_p}} be in soorat ham mitoonim az django form estefade konim ke kelid sh ro tooye view dadim va inja darim estefade mikonim {% endcomment %}
       <label for="inputEmail" class="sr-only">Username</label>
       <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>

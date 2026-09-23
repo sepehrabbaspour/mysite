@@ -1,9 +1,7 @@
 from django.contrib import admin
 from website.models import Contact , NewsLetter
-# Register your models here.
 
-#in file vase taghirat va dadan sakhtar ha be admin man gharare bashe ke orm admin hast
-# ke rajebesh sohbat mishe.
+# Register your models here.
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin): 
@@ -12,8 +10,5 @@ class ContactAdmin(admin.ModelAdmin):
     list_filter = ('email',)
     search_fields = ('name' , 'message')
 
-#admin.site.register(Contact , ContactAdmin) #register dar safhe admin
-#or (in ba decorator hich farghi nadare)
 
-#baraye newsletter : 
-admin.site.register(NewsLetter) #in fela hamin yedoone kafie
+admin.site.register(NewsLetter)
