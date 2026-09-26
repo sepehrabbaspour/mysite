@@ -553,7 +553,7 @@ Possible future improvements include:
 
 **Sepehr Abbaspour**
 
-Computer Science Graduate
+Computer Engineering Graduate
 Python & Django Backend Developer
 
 🔗 GitHub:
