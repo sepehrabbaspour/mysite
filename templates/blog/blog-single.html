@@ -1,6 +1,6 @@
 	{% extends "base.html" %}
 	{% load static %}
-	{% load blog_tags %} <!--baraye load kardan file blog_tags az tooye pooshe templatetags-->
+	{% load blog_tags %}
 	{% load humanize %}
 
 	{% block content %}
@@ -43,9 +43,6 @@
 										<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{post.published_date|date:"d M Y"}}</a> <span class="lnr lnr-calendar-full"></span></p>
 										<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.counted_views}} views</a> <span class="lnr lnr-eye"></span></p>
 										<p class="comments col-lg-12 col-md-12 col-6"><a href="#">{{comments|length}} Comments</a> <span class="lnr lnr-bubble"></span></p>
-										<!--migim be jaye in ke tedad comment haro static neshoon bedi , bia tedad sho bar asas tedad 
-										comment ha behem bede
-										-->
 										<ul class="social-links col-lg-12 col-md-12 col-6">
 											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 											<li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -58,14 +55,6 @@
 									<h3 class="mt-20 mb-20">{{post.title}}</h3>
 									<p class="excert">
 										{{post.content|safe}}
-										<!--
-										in safe be khater ine ke agar tooye panel admin bakhsh marboot be post ha tooye content post moon
-										agar masala ye tag <p> bezarim in emal nemishe. chera ? chon django by defult jeloye in taghirat 
-										ro migire va mige safe nist. ma inja vaghti be in soorat amal konim {{post.content|safe}}
-										be django migim ke in bakhsh taghirat sh safe hast va mitooni ejra koni.
-										alan tooye panel admin bakhsh post ha , content ye post ro toosh tag <p></p> be kar bebarim
-										dige hich moshkeli nist va emal mishe va matn paragraph bandi mishe
-										-->
 									</p>
 
 								</div>
@@ -99,44 +88,24 @@
 								</div>
 							</div>
 							<div class="comments-area">
-								<h4>{{ comments|length }} Comments</h4> <!--migim az tooye comments ha length sh ro mikham-->
-								<!--dar vaghe tedadesh-->
-								{% comment %} <h4>{% comments_count post.id %} Comments</h4> {% endcomment %}
-								<!--alan be jaye ravesh bala ke tooye safhe amaliat ro anjam bedim , miaim va az template tagi ke sakhtim estefade mikonim-->
-								{% comment %} <h4>{% comments_count post.id %} Comments</h4> {% endcomment %}
-								<!--dar vaghe inja esm oon template tagi ke sakhtim ro miraim va code haye navashte shode
-								tooye oon template tag ejra mishan 
-								dar vaghe injoorie : migim tedad comment hario ba estefade az template tagi ke barat sakhtam behem bede
-								jayi ke post.id (pid) ro daram barat mifrestam.
-								hamoon pid ke be onvan voroodi dadim be function comments_count va pk ro barabar pid gozashtim.
-
-								ravesh aval bahtare baraye in ke ma ye bar query zadim ke etelaat safhe ro dar biram 
-								agar tedad in query ha bere bala site ma dir tar load mishe. pas hamoon ravesh aval bedoom query 
-								mirim jelo
-								-->
+								<h4>{{ comments|length }} Comments</h4>
 								<div class="comment-list">
-								{% for comment in comments %} <!--hamoon comments ke to tooye view blog neveshtim va query sh kardim-->
+								{% for comment in comments %}
                                     <div class="single-comment justify-content-between d-flex">
                                         <div class="user justify-content-between d-flex">
                                             <div class="thumb">
                                                 <img src="{% static "img/blog/c1.jpg" %}" alt="">
                                             </div>
                                             <div class="desc">
-                                                <h5><a href="#">{{comment.name}}</a></h5> <!--bajaye esm static migim az comment , name sho biar-->
-                                                <p class="date">{{comment.created_date|naturalday}}</p><!--bajaye tarikh static migim az comment , created_date sho biar-->
-												<!--ye filter tarikh ham roosh gozashtim-->
+                                                <h5><a href="#">{{comment.name}}</a></h5>
+                                                <p class="date">{{comment.created_date|naturalday}}</p>
                                                 <p class="comment">
-                                                    {{comment.message}} <!--be jaye oon matn static comment.message ro behem bede-->
+                                                    {{comment.message}}
                                                 </p>
                                             </div>
                                         </div>
-										<!--
-                                        <div class="reply-btn">
-                                               <a href="" class="btn-reply text-uppercase">reply</a> 
-                                        </div>
-										-->
                                     </div>
-									{% empty %} <!--mige agar ghesmat comment ha khali bood in mat zir ro benevis-->
+									{% empty %}
 									<p>no comments here be the first one to tell your thoughts </p>
 								{% endfor %}
 							</div>	                                             				
